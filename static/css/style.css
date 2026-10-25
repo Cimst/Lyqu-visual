@@ -1,0 +1,409 @@
+    * { box-sizing: border-box; }
+
+    /* ==========================================================
+       VIEWPORT-LOCKED SLIDE DECK ARCHITECTURE (100VH PER SLIDE)
+       ========================================================== */
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      overflow: hidden;
+      background-color: #141519;
+    }
+
+    #deckContainer {
+      height: 100vh;
+      overflow-y: scroll;
+      scroll-snap-type: y mandatory;
+      scroll-behavior: smooth;
+      isolation: isolate;
+    }
+
+    .deck-slide {
+      height: 100vh;
+      width: 100vw;
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      position: relative;
+      z-index: 0;
+      isolation: isolate;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* Pada layar mobile kecil, izinkan scroll internal jika konten padat */
+    @media (max-width: 1023px) {
+      .deck-slide {
+        height: auto;
+        min-height: 100vh;
+        overflow-y: visible;
+      }
+    }
+
+    /* 1. Blueprint Grid Animated Background */
+    .hero-blueprint {
+      background-color: #1E3BFF;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.09) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.09) 1px, transparent 1px);
+      background-size: 52px 52px;
+      animation: panBlueprint 18s linear infinite;
+    }
+    @keyframes panBlueprint {
+      0% { background-position: 0 0; }
+      100% { background-position: 52px 52px; }
+    }
+
+    /* 2. Film Grain Overlay untuk Tekstur Fotografi */
+    .film-grain {
+      pointer-events: none;
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      opacity: 0.035;
+      background-image: radial-gradient(#000 1px, transparent 0);
+      background-size: 3px 3px;
+    }
+
+    /* 3. Custom Viewfinder Cursor */
+    #viewfinderCursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 36px;
+      height: 36px;
+      border: 1.5px solid #C6FF00;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: width 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+                  height 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+                  background-color 0.25s ease,
+                  border-radius 0.25s ease;
+      mix-blend-mode: difference;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #viewfinderCursor::after {
+      content: '+';
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      color: #C6FF00;
+    }
+    #viewfinderCursor.cursor-hover {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      background-color: rgba(198, 255, 0, 0.18);
+    }
+
+    /* 4. Giant Stacked Hero Typography */
+    .giant-stacked {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 900;
+      line-height: 0.84;
+      letter-spacing: -0.045em;
+      perspective: 900px;
+      opacity: 0.78;
+    }
+
+    /* 5. Frosted Glassmorphism + Continuous Levitation */
+    .frosted-glass {
+      background: linear-gradient(145deg, rgba(255, 255, 255, 0.48) 0%, rgba(165, 195, 255, 0.2) 100%);
+      backdrop-filter: blur(22px) saturate(180%);
+      -webkit-backdrop-filter: blur(22px) saturate(180%);
+      border: 1.5px solid rgba(255, 255, 255, 0.78);
+      box-shadow:
+        0 25px 50px -12px rgba(0, 12, 55, 0.55),
+        inset 0 2px 8px rgba(255, 255, 255, 0.85);
+      transform-style: preserve-3d;
+    }
+
+    .float-slow-1 {
+      animation: levitate1 5s ease-in-out infinite;
+    }
+    .float-slow-2 {
+      animation: levitate2 6s ease-in-out infinite;
+    }
+    @keyframes levitate1 {
+      0%, 100% { transform: translateY(0px) rotate(11deg); }
+      50% { transform: translateY(-14px) rotate(13deg); }
+    }
+    @keyframes levitate2 {
+      0%, 100% { transform: translateY(0px) rotate(-12deg); }
+      50% { transform: translateY(12px) rotate(-9deg); }
+    }
+
+    /* 6. Chamfered Corner Card (Referensi Gambar 3) */
+    .chamfer-card {
+      clip-path: polygon(0 0, 100% 0, 100% calc(100% - 28px), calc(100% - 28px) 100%, 0 100%);
+    }
+
+    /* 7. Spiky Starburst 16-Point (Referensi Gambar 2) */
+    .starburst-16 {
+      clip-path: polygon(
+        50% 0%, 60% 15%, 75% 4%, 77% 22%,
+        95% 19%, 88% 36%, 100% 47%, 86% 58%,
+        94% 75%, 77% 77%, 75% 95%, 59% 86%,
+        50% 100%, 41% 86%, 25% 95%, 23% 77%,
+        6% 75%, 14% 58%, 0% 47%, 12% 36%,
+        5% 19%, 23% 22%, 25% 4%, 40% 15%
+      );
+      animation: pulseStar 3.2s ease-in-out infinite;
+    }
+    @keyframes pulseStar {
+      0%, 100% { transform: scale(1) rotate(0deg); }
+      50% { transform: scale(1.08) rotate(8deg); }
+    }
+
+    /* 8. Infinite Kinetic Marquee */
+    .marquee-track {
+      display: flex;
+      width: max-content;
+      animation: marqueeMove 22s linear infinite;
+    }
+    @keyframes marqueeMove {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* 9. Rotating Stamp */
+    .spin-slow {
+      animation: rotate360 14s linear infinite;
+    }
+    @keyframes rotate360 {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    /* 10. Camera Shutter Flash Effect */
+    #shutterFlash {
+      position: fixed;
+      inset: 0;
+      background: white;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 9998;
+    }
+
+    /* Custom Scrollbar tipis */
+    #deckContainer::-webkit-scrollbar { width: 5px; }
+    #deckContainer::-webkit-scrollbar-track { background: #141519; }
+    #deckContainer::-webkit-scrollbar-thumb { background: #C6FF00; border-radius: 99px; }
+
+    .site-nav-actions a,
+    .site-nav-actions button {
+      white-space: nowrap;
+    }
+
+    .site-nav {
+      z-index: 60;
+    }
+
+    .slide-sidebar {
+      position: fixed;
+      inset: 0 auto 0 0;
+      z-index: 80;
+      display: flex;
+      width: 264px;
+      flex-direction: column;
+      padding: 18px 14px 14px;
+      background: #fff;
+      border-right: 1px solid #e5e7eb;
+      color: #141519;
+      box-shadow: 16px 0 40px rgba(20, 21, 25, 0.14);
+      transform: translateX(-105%);
+      transition: transform 0.25s ease;
+      visibility: hidden;
+    }
+
+    body.sidebar-open .slide-sidebar {
+      transform: translateX(0);
+      visibility: visible;
+    }
+
+    .sidebar-header {
+      display: flex;
+      min-height: 46px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .sidebar-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 42px;
+      padding: 0 4px;
+      color: #141519;
+      text-decoration: none;
+    }
+
+    .sidebar-close {
+      display: grid;
+      width: 36px;
+      height: 36px;
+      flex: 0 0 36px;
+      place-items: center;
+      border: 1px solid #e5e7eb;
+      border-radius: 11px;
+      background: #f9fafb;
+      color: #4b5563;
+      cursor: pointer;
+      font: 400 25px/1 'Plus Jakarta Sans', sans-serif;
+      transition: background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .sidebar-close:hover {
+      background: #141519;
+      color: #c6ff00;
+    }
+
+    .sidebar-brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      flex: 0 0 34px;
+      place-items: center;
+      border-radius: 11px;
+      background: #1e3bff;
+      color: #c6ff00;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 16px;
+      font-weight: 900;
+    }
+
+    .sidebar-brand-name {
+      white-space: nowrap;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: -0.04em;
+    }
+
+    .sidebar-brand-name span {
+      color: #1e3bff;
+    }
+
+    .sidebar-section-label {
+      margin: 34px 8px 10px;
+      color: #6b7280;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+    }
+
+    .sidebar-links {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .slide-link {
+      display: flex;
+      min-height: 44px;
+      align-items: center;
+      gap: 12px;
+      padding: 0 10px;
+      border-radius: 12px;
+      color: #4b5563;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background-color 0.18s ease, color 0.18s ease;
+    }
+
+    .slide-link:hover {
+      background: #f3f4f6;
+      color: #141519;
+    }
+
+    .slide-link.is-active {
+      background: #1e3bff;
+      color: #fff;
+      box-shadow: 0 6px 14px rgba(30, 59, 255, 0.18);
+    }
+
+    .slide-link-number {
+      display: grid;
+      width: 28px;
+      height: 28px;
+      flex: 0 0 28px;
+      place-items: center;
+      border-radius: 9px;
+      background: #f3f4f6;
+      color: #6b7280;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+    }
+
+    .slide-link.is-active .slide-link-number {
+      background: #c6ff00;
+      color: #141519;
+    }
+
+    .slide-link-label {
+      white-space: nowrap;
+    }
+
+    .sidebar-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 70;
+      display: none;
+      border: 0;
+      background: rgba(20, 21, 25, 0.58);
+      backdrop-filter: blur(2px);
+    }
+
+    body.sidebar-open .sidebar-backdrop {
+      display: block;
+    }
+
+    .sidebar-toggle {
+      display: flex;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 42px;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 12px;
+      background: rgba(20, 21, 25, 0.82);
+      cursor: pointer;
+      backdrop-filter: blur(12px);
+    }
+
+    .sidebar-toggle span {
+      width: 17px;
+      height: 2px;
+      border-radius: 2px;
+      background: #c6ff00;
+    }
+
+    @media (max-width: 1199px) {
+    }
+
+    @media (min-width: 1536px) {
+      .site-nav {
+        display: grid;
+        grid-template-columns: auto auto;
+        column-gap: 1rem;
+        justify-content: space-between;
+      }
+
+      .site-nav > a,
+      .site-nav-actions {
+        min-width: max-content;
+      }
+    }

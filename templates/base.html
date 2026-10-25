@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ page_title | default('LYQU VISUAL — Studio Fotografi & Visual Kreatif Yogyakarta') }}</title>
+
+  <!-- Google Fonts: Unbounded (Display), Plus Jakarta Sans (UI), JetBrains Mono (EXIF/Tech) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN & Config -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="{{ url_for('static', filename='js/tailwind.config.js') }}"></script>
+
+  <!-- GSAP & ScrollTrigger CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <!-- Vanilla-Tilt.js CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+
+<body class="text-obsidian antialiased selection:bg-acid selection:text-obsidian">
+
+  <!-- Tekstur Film & Efek Flash Kamera -->
+  <div class="film-grain"></div>
+  <div id="shutterFlash"></div>
+  <div id="viewfinderCursor" class="hidden lg:flex"></div>
+
+  {% include 'partials/navbar.html' %}
+
+  <!-- =====================================================================
+       MAIN WIDESCREEN SLIDE CONTAINER
+       ===================================================================== -->
+  <main id="deckContainer">
+    {% block content %}{% endblock %}
+  </main>
+
+  {% include 'partials/modals.html' %}
+
+  <script>
+    window.INITIAL_SLIDE_INDEX = {{ active_slide | default(0) }};
+  </script>
+  <script src="{{ url_for('static', filename='js/data.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+  <aside id="slideSidebar" class="slide-sidebar" aria-label="Menu navigasi slide">
+    <div class="sidebar-header">
+      <a href="#slide-1" class="sidebar-brand">
+        <span class="sidebar-brand-mark">L</span>
+        <span class="sidebar-brand-name">LYQU <span>VISUAL</span></span>
+      </a>
+      <button id="sidebarCloseBtn" class="sidebar-close" type="button" aria-label="Tutup menu">
+        <span aria-hidden="true">×</span>
+      </button>
+    </div>
+
+    <div class="sidebar-section-label">STUDIO</div>
+    <nav class="sidebar-links" aria-label="Navigasi slide">
+      <a href="#slide-1" class="slide-link is-active" aria-current="page" title="Beranda">
+        <span class="slide-link-number">01</span><span class="slide-link-label">Beranda</span>
+      </a>
+      <a href="#slide-2" class="slide-link" title="Portofolio">
+        <span class="slide-link-number">02</span><span class="slide-link-label">Portofolio</span>
+      </a>
+      <a href="#slide-3" class="slide-link" title="Tentang & Gear">
+        <span class="slide-link-number">03</span><span class="slide-link-label">Tentang & Gear</span>
+      </a>
+      <a href="#slide-4" class="slide-link" title="Paket & Booking">
+        <span class="slide-link-number">04</span><span class="slide-link-label">Paket & Booking</span>
+      </a>
+      <a href="#slide-5" class="slide-link" title="Portal Klien">
+        <span class="slide-link-number">05</span><span class="slide-link-label">Portal Klien</span>
+      </a>
+      <a href="#slide-6" class="slide-link" title="FAQ & Kontak">
+        <span class="slide-link-number">06</span><span class="slide-link-label">FAQ & Kontak</span>
+      </a>
+    </nav>
+
+  </aside>
+
+  <button id="sidebarBackdrop" class="sidebar-backdrop" type="button" aria-label="Tutup menu"></button>
+
+  <nav class="site-nav fixed top-0 left-0 right-0 z-[60] px-4 sm:px-8 py-3.5 flex items-center justify-between pointer-events-none">
+    <div class="flex items-center gap-2">
+      <button id="sidebarToggleBtn" class="sidebar-toggle pointer-events-auto" type="button" aria-label="Buka navigasi slide" aria-expanded="false" aria-controls="slideSidebar">
+        <span></span><span></span><span></span>
+      </button>
+      <a href="#slide-1" class="pointer-events-auto flex items-center group magnetic-el">
+        <span class="bg-white text-obsidian font-hero font-black text-xs sm:text-sm px-3 sm:px-3.5 py-1.5 rounded-full relative shadow-md">
+          LYQU
+          <span class="absolute -bottom-1 left-4 w-2 h-2 bg-white rotate-45"></span>
+        </span>
+        <span class="bg-obsidian/80 border border-white/75 text-acid font-hero font-black text-xs sm:text-sm px-3 sm:px-3.5 py-1.5 rounded-full -ml-1.5 backdrop-blur-md">
+          VISUAL
+        </span>
+      </a>
+    </div>
+
+    <div class="site-nav-actions pointer-events-auto flex items-center gap-2">
+      <a href="https://wa.me/6281234567890?text=Halo%20Lyqu%20Visual%20Jogja,%20saya%20ingin%20konsultasi%20jadwal%20pemotretan"
+         target="_blank" rel="noopener noreferrer" aria-label="WhatsApp Konsultasi Jogja" title="WhatsApp Konsultasi Jogja"
+         class="magnetic-el w-10 h-10 shrink-0 sm:w-auto sm:h-auto sm:px-3 sm:py-2 rounded-full bg-acid text-obsidian border-2 border-obsidian shadow-xl flex items-center justify-center gap-2 font-hero font-bold text-[11px] hover:scale-105 transition">
+        <span class="sm:hidden">WA</span>
+        <span class="hidden sm:inline whitespace-nowrap">WA Konsultasi Jogja</span>
+      </a>
+
+      <!-- Google SSO Button -->
+      <button id="navAuthBtn" onclick="openSsoModal()" class="magnetic-el px-2 sm:px-4 py-2 rounded-full bg-obsidian text-acid border border-acid/60 text-[10px] sm:text-xs font-hero font-bold hover:bg-acid hover:text-obsidian transition shadow-lg whitespace-nowrap">
+        <span class="sm:hidden">Login</span>
+        <span id="navAuthText" class="hidden sm:inline">Login Google SSO</span>
+      </button>
+    </div>
+  </nav>
