@@ -1,21 +1,21 @@
     <!-- ===================================================================
-         SLIDE 04: HARGA, KALENDER REAL-TIME & SPLIT TICKET DP (100VH DESKTOP / SWIPE MOBILE)
+         SLIDE 04: HARGA, KALENDER REAL-TIME & SPLIT TICKET DP (100VH DESKTOP / TABLET / MOBILE)
          =================================================================== -->
-    <section id="slide-4" class="deck-slide bg-acid text-obsidian pt-14 sm:pt-16 pb-8 sm:pb-6 px-4 sm:px-8">
+    <section id="slide-4" class="deck-slide bg-acid text-obsidian pt-14 sm:pt-16 pb-12 sm:pb-8 px-4 sm:px-6 md:px-8">
       <div class="max-w-7xl w-full mx-auto flex-1 flex flex-col justify-between gap-4 sm:gap-3">
 
         <!-- Header Kapsul + 4 Step Badges -->
         <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3">
           <div class="anim-el flex items-center justify-between">
             <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
-              <span class="font-hero font-black text-base sm:text-3xl uppercase">PILIH</span>
-              <span class="bg-white text-obsidian font-hero font-black text-base sm:text-3xl px-3 sm:px-4 py-1 rounded-full shadow -rotate-1">PAKET</span>
-              <span class="bg-cobalt text-white font-hero font-black text-base sm:text-3xl px-3 sm:px-4 py-1 rounded-full shadow rotate-1">MOMENMU</span>
+              <span class="font-hero font-black text-base sm:text-2xl md:text-3xl uppercase">PILIH</span>
+              <span class="bg-white text-obsidian font-hero font-black text-base sm:text-2xl md:text-3xl px-3 sm:px-4 py-1 rounded-full shadow -rotate-1">PAKET</span>
+              <span class="bg-cobalt text-white font-hero font-black text-base sm:text-2xl md:text-3xl px-3 sm:px-4 py-1 rounded-full shadow rotate-1">MOMENMU</span>
             </div>
-            <span class="lg:hidden font-mono text-[10px] font-bold text-obsidian/80">Geser Paket →</span>
+            <span class="md:hidden font-mono text-[10px] font-bold text-obsidian/80">Geser Paket →</span>
           </div>
 
-          <!-- 4 Step Badges (01-04) - Horizontal Scroll di Mobile -->
+          <!-- 4 Step Badges (01-04) - Horizontal Scroll di Mobile, Clean Wrap di Tablet -->
           <div class="anim-el flex flex-nowrap sm:flex-wrap items-center gap-1.5 sm:gap-2 overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 pb-0.5 sm:pb-0">
             <div class="shrink-0 bg-white px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-full flex items-center gap-1.5 sm:gap-2 shadow-sm">
               <span class="w-5 h-5 sm:w-6 sm:h-6 rounded-md bg-obsidian text-acid font-hero text-[9px] font-bold flex items-center justify-center">01</span>
@@ -36,20 +36,20 @@
           </div>
         </div>
 
-        <!-- Baris Tengah: 3 Kartu Paket Harga (Swipeable Carousel di Mobile, 3-Col Grid di Desktop) -->
-        <div class="flex lg:grid lg:grid-cols-3 gap-3.5 sm:gap-4 overflow-x-auto lg:overflow-visible snap-x snap-mandatory no-scrollbar -mx-4 px-4 lg:mx-0 lg:px-0 pt-3 pb-1 lg:py-0">
+        <!-- Baris Tengah: 3 Kartu Paket Harga (Swipeable di HP < 768px, 3-Col Grid di Tablet 768px & Desktop) -->
+        <div class="flex md:grid md:grid-cols-3 gap-3.5 sm:gap-4 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar -mx-4 px-4 md:mx-0 md:px-0 pt-3 pb-1 md:py-0">
           <!-- Paket 1 -->
-          <div class="anim-el w-[84vw] max-w-[320px] lg:w-auto lg:max-w-none shrink-0 snap-center bg-white rounded-[22px] p-4 shadow-md flex flex-col justify-between border border-obsidian/10">
+          <div class="anim-el w-[84vw] max-w-[320px] md:w-auto md:max-w-none shrink-0 snap-center bg-white rounded-[22px] p-4 shadow-md flex flex-col justify-between border border-obsidian/10">
             <div>
               <div class="flex justify-between items-center text-[10px] font-mono font-bold">
                 <span class="bg-cobalt text-white px-2.5 py-0.5 rounded-full">OUTDOOR JOGJA</span>
                 <span>4 JAM • 50 EDITED</span>
               </div>
-              <h3 class="font-hero font-black text-base uppercase mt-2">PRE-WEDDING JOGJA</h3>
+              <h3 class="font-hero font-black text-sm sm:text-base uppercase mt-2">PRE-WEDDING JOGJA</h3>
               <p class="text-xs leading-relaxed text-neutral-600 mt-1">Bebas 2 lokasi DIY, semua file RAW untuk Proofing pilihan, & Signature LUT.</p>
             </div>
             <div class="mt-3 pt-2.5 border-t border-neutral-200 flex items-center justify-between">
-              <span class="font-hero font-black text-lg text-cobalt">Rp 2.500K</span>
+              <span class="font-hero font-black text-base sm:text-lg text-cobalt">Rp 2.500K</span>
               <button onclick="choosePackage(2500000, 'Pre-Wedding Jogja (4 Jam / 50 Edited)')" class="px-3.5 py-1.5 rounded-full bg-obsidian text-acid font-hero font-bold text-[10px] uppercase hover:bg-cobalt hover:text-white active:scale-95 transition">
                 Pilih Paket →
               </button>
@@ -57,17 +57,17 @@
           </div>
 
           <!-- Paket 2 -->
-          <div class="anim-el w-[84vw] max-w-[320px] lg:w-auto lg:max-w-none shrink-0 snap-center bg-obsidian text-white rounded-[22px] p-4 shadow-xl flex flex-col justify-between relative border-2 border-cobalt">
+          <div class="anim-el w-[84vw] max-w-[320px] md:w-auto md:max-w-none shrink-0 snap-center bg-obsidian text-white rounded-[22px] p-4 shadow-xl flex flex-col justify-between relative border-2 border-cobalt">
             <span class="bg-cobalt text-white font-hero font-bold text-[9px] px-3 py-0.5 rounded-full absolute -top-2.5 right-4 shadow">
               TERPOPULER!
             </span>
             <div>
               <span class="font-mono text-[10px] text-acid">FULL DAY • 8 JAM • 120+ EDITED</span>
-              <h3 class="font-hero font-black text-base uppercase mt-1">WEDDING DOCUMENTATION</h3>
+              <h3 class="font-hero font-black text-sm sm:text-base uppercase mt-1">WEDDING DOCUMENTATION</h3>
               <p class="text-xs leading-relaxed text-neutral-300 mt-1">2 Fotografer + Lighting, 15 Express Foto H+1, & Box Cetak 4R Eksklusif.</p>
             </div>
             <div class="mt-3 pt-2.5 border-t border-white/15 flex items-center justify-between">
-              <span class="font-hero font-black text-lg text-acid">Rp 4.800K</span>
+              <span class="font-hero font-black text-base sm:text-lg text-acid">Rp 4.800K</span>
               <button onclick="choosePackage(4800000, 'Wedding Documentation (8 Jam / 120 Edited)')" class="px-3.5 py-1.5 rounded-full bg-acid text-obsidian font-hero font-bold text-[10px] uppercase hover:bg-white active:scale-95 transition">
                 Pilih Paket →
               </button>
@@ -75,17 +75,17 @@
           </div>
 
           <!-- Paket 3 -->
-          <div class="anim-el w-[84vw] max-w-[320px] lg:w-auto lg:max-w-none shrink-0 snap-center bg-white rounded-[22px] p-4 shadow-md flex flex-col justify-between border border-obsidian/10">
+          <div class="anim-el w-[84vw] max-w-[320px] md:w-auto md:max-w-none shrink-0 snap-center bg-white rounded-[22px] p-4 shadow-md flex flex-col justify-between border border-obsidian/10">
             <div>
               <div class="flex justify-between items-center text-[10px] font-mono font-bold">
                 <span class="bg-obsidian text-acid px-2.5 py-0.5 rounded-full">EXPRESS SESI</span>
                 <span>2 JAM • 25 EDITED</span>
               </div>
-              <h3 class="font-hero font-black text-base uppercase mt-2">PORTRAIT, WISUDA & PRODUK</h3>
+              <h3 class="font-hero font-black text-sm sm:text-base uppercase mt-2">PORTRAIT, WISUDA & PRODUK</h3>
               <p class="text-xs leading-relaxed text-neutral-600 mt-1">Cocok untuk Wisuda Kampus Jogja, Personal Branding & Katalog UMKM.</p>
             </div>
             <div class="mt-3 pt-2.5 border-t border-neutral-200 flex items-center justify-between">
-              <span class="font-hero font-black text-lg text-obsidian">Rp 1.200K</span>
+              <span class="font-hero font-black text-base sm:text-lg text-obsidian">Rp 1.200K</span>
               <button onclick="choosePackage(1200000, 'Portrait & Katalog (2 Jam / 25 Edited)')" class="px-3.5 py-1.5 rounded-full bg-cobalt text-white font-hero font-bold text-[10px] uppercase hover:bg-obsidian hover:text-acid active:scale-95 transition">
                 Pilih Paket →
               </button>
@@ -96,12 +96,12 @@
         <!-- Baris Bawah: SPLIT TICKET CARD (Kalender Real-Time + Kalkulator DP 30%) -->
         <div id="booking-ticket" class="anim-el grid grid-cols-1 lg:grid-cols-12 items-stretch relative shadow-xl rounded-[26px]">
           
-          <!-- Kiri/Atas (Obsidian): Kalender & Input Lokasi DIY -->
+          <!-- Kiri/Atas (Obsidian): Kalender & Input Lokasi DIY (Side-by-side di Tablet 768px) -->
           <div class="lg:col-span-7 bg-obsidian text-white rounded-t-[26px] lg:rounded-l-[26px] lg:rounded-tr-none p-4 sm:p-5">
             <div class="grid grid-cols-1 sm:grid-cols-12 gap-3.5 sm:gap-4 items-center">
               
-              <!-- Mini Calendar (5 Kolom) -->
-              <div class="sm:col-span-12 xl:col-span-5 bg-white text-obsidian p-2.5 sm:p-3 rounded-xl">
+              <!-- Mini Calendar (5 Kolom di Tablet & Desktop) -->
+              <div class="sm:col-span-5 bg-white text-obsidian p-2.5 sm:p-3 rounded-xl">
                 <div class="flex justify-between items-center mb-1.5 font-mono text-[10px] font-bold">
                   <span>OKT – NOV 2026</span>
                   <span class="text-cobalt">● G-Cal Sync</span>
@@ -111,8 +111,8 @@
                 </div>
               </div>
 
-              <!-- Form Pilihan (7 Kolom) -->
-              <div class="sm:col-span-12 xl:col-span-7 space-y-2.5 text-obsidian">
+              <!-- Form Pilihan (7 Kolom di Tablet & Desktop) -->
+              <div class="sm:col-span-7 space-y-2.5 text-obsidian">
                 <div>
                   <label class="block text-[10px] font-mono font-bold text-acid uppercase mb-0.5">Paket Dipilih</label>
                   <select id="calcPackage" onchange="recalculateDp()" class="w-full p-2.5 rounded-lg text-xs font-bold bg-white">
@@ -140,7 +140,7 @@
             </div>
           </div>
 
-          <!-- Jahitan Tiket Horizontal (Khusus Mobile/Tablet < 1024px) -->
+          <!-- Jahitan Tiket Horizontal (Khusus Mobile & Tablet Portrait < 1024px) -->
           <div class="lg:hidden relative bg-obsidian flex items-center justify-between px-4 py-1 overflow-hidden">
             <span class="w-5 h-5 rounded-full bg-acid -ml-6 shrink-0"></span>
             <div class="flex-1 border-t-2 border-dashed border-acid/60 mx-2"></div>
@@ -166,7 +166,7 @@
             </div>
 
             <div class="my-1.5 sm:my-1 flex items-baseline justify-between">
-              <p id="bigDpDisplay" class="font-sans font-extrabold text-2xl sm:text-4xl text-acid">Rp 750.000</p>
+              <p id="bigDpDisplay" class="font-sans font-extrabold text-2xl sm:text-3xl md:text-4xl text-acid">Rp 750.000</p>
               <span class="text-[11px] text-white/80 font-mono">Total: <strong id="totalEstDisplay" class="text-white">Rp 2.500.000</strong></span>
             </div>
 
