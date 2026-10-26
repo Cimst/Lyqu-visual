@@ -1,35 +1,37 @@
   <!-- MODAL GOOGLE SSO LOGIN -->
-  <div id="ssoModal" class="fixed inset-0 bg-obsidian/80 backdrop-blur-md z-50 hidden items-center justify-center p-4">
-    <div class="bg-white rounded-[32px] max-w-md w-full p-7 border-2 border-obsidian text-center relative">
-      <button onclick="closeSsoModal()" class="absolute top-4 right-5 font-mono text-lg font-bold">✕</button>
+  <div id="ssoModal" class="fixed inset-0 bg-obsidian/80 backdrop-blur-md z-[90] hidden items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white rounded-t-[32px] sm:rounded-[32px] max-w-md w-full p-6 sm:p-7 border-t-2 sm:border-2 border-obsidian text-center relative shadow-2xl">
+      <div class="sm:hidden w-12 h-1.5 bg-neutral-300 rounded-full mx-auto mb-4"></div>
+      <button onclick="closeSsoModal()" class="absolute top-4 right-5 w-8 h-8 rounded-full bg-surface flex items-center justify-center font-mono text-base font-bold">✕</button>
       <span class="bg-cobalt text-white font-mono text-[10px] px-3 py-1 rounded-full">GOOGLE OAUTH 2.0 • 1-CLICK LOGIN</span>
-      <h3 class="font-hero font-black text-xl mt-3">AUTENTIKASI KLIEN</h3>
+      <h3 class="font-hero font-black text-lg sm:text-xl mt-3">AUTENTIKASI KLIEN</h3>
       <p class="text-xs text-neutral-600 mt-1">Login instan menggunakan akun Google untuk mengunci tanggal, memilih foto RAW, dan membuka Google Drive.</p>
 
-      <div class="mt-5 space-y-3 text-left">
+      <div class="mt-4 sm:mt-5 space-y-3 text-left">
         <label class="block text-xs font-bold uppercase">Nama Klien</label>
         <input id="ssoName" type="text" value="Muhammad Zaki" class="w-full p-3 rounded-xl border border-neutral-300 text-sm font-bold" />
         <label class="block text-xs font-bold uppercase">Email Gmail</label>
         <input id="ssoEmail" type="email" value="klien.lyqu@gmail.com" class="w-full p-3 rounded-xl border border-neutral-300 text-sm font-mono" />
       </div>
 
-      <button onclick="handleSsoLogin()" class="mt-6 w-full py-3.5 rounded-full bg-obsidian text-acid font-hero font-bold text-xs uppercase hover:bg-cobalt hover:text-white transition">
+      <button onclick="handleSsoLogin()" class="mt-5 sm:mt-6 w-full py-3.5 rounded-full bg-obsidian text-acid font-hero font-bold text-xs uppercase hover:bg-cobalt hover:text-white active:scale-95 transition">
         Lanjutkan dengan Google →
       </button>
     </div>
   </div>
 
   <!-- MODAL INVOICE QRIS DP 30% -->
-  <div id="invoiceModal" class="fixed inset-0 bg-obsidian/80 backdrop-blur-md z-50 hidden items-center justify-center p-4">
-    <div class="bg-white rounded-[32px] max-w-md w-full p-7 border-2 border-obsidian relative text-center">
-      <button onclick="closeInvoiceModal()" class="absolute top-4 right-5 font-mono text-lg font-bold">✕</button>
+  <div id="invoiceModal" class="fixed inset-0 bg-obsidian/80 backdrop-blur-md z-[90] hidden items-end sm:items-center justify-center p-0 sm:p-4">
+    <div class="bg-white rounded-t-[32px] sm:rounded-[32px] max-w-md w-full p-6 sm:p-7 border-t-2 sm:border-2 border-obsidian relative text-center shadow-2xl">
+      <div class="sm:hidden w-12 h-1.5 bg-neutral-300 rounded-full mx-auto mb-4"></div>
+      <button onclick="closeInvoiceModal()" class="absolute top-4 right-5 w-8 h-8 rounded-full bg-surface flex items-center justify-center font-mono text-base font-bold">✕</button>
       <span class="bg-acid text-obsidian font-mono text-[10px] font-bold px-3 py-1 rounded-full">INVOICE DP 30% • KUNCI JADWAL</span>
-      <h3 id="modalPkgName" class="font-hero font-black text-lg mt-3">Pre-Wedding Jogja</h3>
+      <h3 id="modalPkgName" class="font-hero font-black text-base sm:text-lg mt-3">Pre-Wedding Jogja</h3>
       <p id="modalDateInfo" class="font-mono text-xs text-neutral-600">Tanggal: 28 Okt 2026</p>
 
-      <div class="my-5 bg-surface p-5 rounded-2xl border border-neutral-200">
+      <div class="my-4 sm:my-5 bg-surface p-4 sm:p-5 rounded-2xl border border-neutral-200">
         <p class="font-mono text-xs font-bold mb-2">SCAN QRIS LYQU VISUAL STUDIO</p>
-        <div class="w-36 h-36 mx-auto bg-white p-3 rounded-xl border-2 border-obsidian flex items-center justify-center">
+        <div class="w-32 h-32 sm:w-36 sm:h-36 mx-auto bg-white p-3 rounded-xl border-2 border-obsidian flex items-center justify-center">
           <svg viewBox="0 0 100 100" class="w-full h-full fill-obsidian">
             <rect x="5" y="5" width="28" height="28" fill="none" stroke="currentColor" stroke-width="6"/>
             <rect x="13" y="13" width="12" height="12"/>
@@ -46,7 +48,7 @@
         <p class="font-mono text-[11px] text-neutral-600 mt-1">Transfer Blu/BCA: <strong>0082-9918-271 (Lyqu Visual)</strong></p>
       </div>
 
-      <button onclick="completePayment()" class="w-full py-3.5 rounded-full bg-cobalt text-white font-hero font-bold text-xs uppercase hover:bg-obsidian hover:text-acid transition shadow-lg">
+      <button onclick="completePayment()" class="w-full py-3.5 rounded-full bg-cobalt text-white font-hero font-bold text-xs uppercase hover:bg-obsidian hover:text-acid active:scale-95 transition shadow-lg">
         Konfirmasi Pembayaran DP →
       </button>
     </div>

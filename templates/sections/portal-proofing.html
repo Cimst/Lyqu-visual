@@ -1,45 +1,47 @@
     <!-- ===================================================================
-         SLIDE 05: PORTAL KLIEN — PROOFING, G-DRIVE & REVIEW (100VH LOCKED)
+         SLIDE 05: PORTAL KLIEN — PROOFING, G-DRIVE & REVIEW (100VH DESKTOP / MOBILE-FIRST)
          =================================================================== -->
-    <section id="slide-5" class="deck-slide bg-white text-obsidian pt-16 pb-6 px-4 sm:px-8">
+    <section id="slide-5" class="deck-slide bg-white text-obsidian pt-14 sm:pt-16 pb-8 sm:pb-6 px-4 sm:px-8">
       <div class="max-w-7xl w-full mx-auto flex-1 flex flex-col justify-between gap-4">
 
         <!-- Baris Atas: Judul Portal & Status Proyek Klien -->
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div class="anim-el">
             <span class="bg-obsidian text-acid font-mono text-[10px] font-bold px-3 py-1 rounded-full">● 05 / PORTAL KLIEN TEROTOMATISASI</span>
-            <h2 class="font-sans font-extrabold text-2xl sm:text-4xl mt-1">Ruang Proofing RAW & Akses Google Drive</h2>
+            <h2 class="font-sans font-extrabold text-2xl sm:text-4xl mt-1.5 sm:mt-1 leading-tight">Ruang Proofing RAW & Akses Google Drive</h2>
           </div>
 
-          <div class="anim-el bg-surface px-4 py-2.5 rounded-2xl border border-neutral-200 flex items-center gap-3">
-            <div id="clientAvatarBadge" class="w-9 h-9 rounded-xl bg-cobalt text-white font-hero font-bold flex items-center justify-center">Z</div>
-            <div>
-              <p id="clientNameBadge" class="text-xs font-bold">Muhammad Zaki (Sesi Demo Klien)</p>
-              <p id="clientProjectStatus" class="font-mono text-[10px] text-cobalt font-bold">Proyek: #LYQ-JGJ-2026 • Tahap Pemilihan RAW</p>
+          <div class="anim-el bg-surface px-3.5 sm:px-4 py-2.5 rounded-2xl border border-neutral-200 flex items-center gap-3 shadow-sm">
+            <div id="clientAvatarBadge" class="w-9 h-9 rounded-xl bg-cobalt text-white font-hero font-bold flex items-center justify-center shrink-0">Z</div>
+            <div class="min-w-0">
+              <p id="clientNameBadge" class="text-xs font-bold truncate">Muhammad Zaki (Sesi Demo Klien)</p>
+              <p id="clientProjectStatus" class="font-mono text-[10px] text-cobalt font-bold truncate">Proyek: #LYQ-JGJ-2026 • Tahap Pemilihan RAW</p>
             </div>
           </div>
         </div>
 
         <!-- Baris Tengah: Kiri Galeri Geser Foto RAW (8 Kolom) + Kanan G-Drive & Form Ulasan (4 Kolom) -->
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch my-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 items-stretch my-auto">
           
           <!-- Kiri: Interactive RAW Proofing Gallery -->
-          <div class="lg:col-span-8 bg-surface rounded-[26px] p-5 flex flex-col justify-between">
-            <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <div class="lg:col-span-8 bg-surface rounded-[24px] sm:rounded-[26px] p-4 sm:p-5 flex flex-col justify-between border border-neutral-200/70">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 mb-3">
               <div>
-                <h3 class="font-sans font-extrabold text-base">Galeri Foto Mentah (H+1) — Klik untuk Memilih Foto</h3>
-                <p class="text-[11px] text-neutral-600">Geser foto ke samping untuk melihat lainnya. Foto terpilih masuk antrean 16-Bit Color Grading.</p>
+                <h3 class="font-sans font-extrabold text-sm sm:text-base">Galeri Foto Mentah (H+1) — Tap untuk Memilih</h3>
+                <p class="text-[11px] text-neutral-600">Geser foto ke samping. Foto terpilih masuk antrean 16-Bit Color Grading.</p>
               </div>
-              <div class="flex items-center gap-2">
-                <span class="bg-obsidian text-acid font-mono text-xs font-bold px-3 py-1 rounded-full">
-                  Terpilih: <span id="selectedCounter">2</span> / 50
-                </span>
-                <button onclick="toggleFilterSelected()" id="btnOnlySelected" class="px-3 py-1 rounded-full bg-white border border-neutral-300 text-[11px] font-bold hover:bg-acid transition">
-                  Pilihan Saja
-                </button>
+              <div class="flex items-center justify-between sm:justify-end gap-2 w-full sm:w-auto">
+                <div class="flex items-center gap-1.5">
+                  <span class="bg-obsidian text-acid font-mono text-[11px] sm:text-xs font-bold px-3 py-1 rounded-full">
+                    Terpilih: <span id="selectedCounter">2</span> / 50
+                  </span>
+                  <button onclick="toggleFilterSelected()" id="btnOnlySelected" class="px-3 py-1 rounded-full bg-white border border-neutral-300 text-[11px] font-bold hover:bg-acid active:scale-95 transition">
+                    Pilihan Saja
+                  </button>
+                </div>
                 <div class="flex items-center gap-1" aria-label="Navigasi galeri foto">
-                  <button type="button" onclick="scrollProofingGallery(-1)" aria-label="Foto sebelumnya" class="w-9 h-9 rounded-full bg-white border border-neutral-300 font-bold hover:bg-acid transition">←</button>
-                  <button type="button" onclick="scrollProofingGallery(1)" aria-label="Foto berikutnya" class="w-9 h-9 rounded-full bg-white border border-neutral-300 font-bold hover:bg-acid transition">→</button>
+                  <button type="button" onclick="scrollProofingGallery(-1)" aria-label="Foto sebelumnya" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-neutral-300 font-bold hover:bg-acid active:scale-95 transition">←</button>
+                  <button type="button" onclick="scrollProofingGallery(1)" aria-label="Foto berikutnya" class="w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-white border border-neutral-300 font-bold hover:bg-acid active:scale-95 transition">→</button>
                 </div>
               </div>
             </div>
@@ -48,9 +50,9 @@
               <!-- Di-render via JS -->
             </div>
 
-            <div class="mt-3 pt-3 border-t border-neutral-200 flex items-center justify-between">
+            <div class="mt-3 pt-3 border-t border-neutral-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2">
               <span class="font-mono text-[10px] text-neutral-600">SLA Final Grading: 7–14 Hari Kerja</span>
-              <button onclick="lockProofingChoices()" class="px-5 py-2 rounded-xl bg-cobalt text-white font-hero font-bold text-[11px] uppercase hover:bg-obsidian hover:text-acid transition">
+              <button onclick="lockProofingChoices()" class="w-full sm:w-auto px-5 py-2.5 sm:py-2 rounded-xl bg-cobalt text-white font-hero font-bold text-[11px] uppercase hover:bg-obsidian hover:text-acid active:scale-95 transition shadow-sm">
                 Kunci Pilihan Foto →
               </button>
             </div>
@@ -60,7 +62,7 @@
           <div class="lg:col-span-4 flex flex-col justify-between gap-4">
             
             <!-- Card Google Drive -->
-            <div class="bg-cobalt text-white p-5 rounded-[24px]">
+            <div class="bg-cobalt text-white p-4 sm:p-5 rounded-[24px] shadow-md">
               <div class="flex items-center justify-between mb-2">
                 <span class="font-mono text-[10px] bg-acid text-obsidian font-bold px-2.5 py-0.5 rounded-full">GOOGLE DRIVE DELIVERABLES</span>
                 <span class="text-xs">📁</span>
@@ -69,25 +71,25 @@
               <div class="mt-2 bg-obsidian/40 p-2.5 rounded-xl font-mono text-[11px] truncate text-acid">
                 drive.google.com/drive/folders/LYQU-JGJ-2026
               </div>
-              <a href="https://drive.google.com" target="_blank" rel="noopener noreferrer" class="mt-3 w-full py-2.5 rounded-xl bg-acid text-obsidian font-hero font-bold text-[11px] uppercase flex items-center justify-center hover:bg-white transition">
+              <a href="https://drive.google.com" target="_blank" rel="noopener noreferrer" class="mt-3 w-full py-2.5 rounded-xl bg-acid text-obsidian font-hero font-bold text-[11px] uppercase flex items-center justify-center hover:bg-white active:scale-95 transition shadow">
                 Buka & Unduh Hasil Akhir ↗
               </a>
             </div>
 
             <!-- Card Kirim Ulasan -->
-            <div class="bg-obsidian text-white p-5 rounded-[24px] flex-1 flex flex-col justify-between">
+            <div class="bg-obsidian text-white p-4 sm:p-5 rounded-[24px] flex-1 flex flex-col justify-between shadow-md">
               <div>
                 <h4 class="font-sans font-extrabold text-sm text-acid">Berikan Ulasan Proyek</h4>
                 <p class="text-[11px] text-neutral-400">Otomatis tampil pada ticker testimoni di bawah.</p>
                 <div class="grid grid-cols-3 gap-2 mt-2.5">
-                  <select id="inputReviewRating" class="col-span-1 p-2 rounded-lg text-xs font-bold bg-white text-obsidian">
+                  <select id="inputReviewRating" class="col-span-1 p-2.5 sm:p-2 rounded-lg text-xs font-bold bg-white text-obsidian">
                     <option value="5">5 — Sangat puas</option>
                     <option value="4">4 — Puas</option>
                   </select>
-                  <input id="inputReviewText" type="text" placeholder="Tulis testimoni singkat..." class="col-span-2 p-2 rounded-lg text-xs bg-white text-obsidian" />
+                  <input id="inputReviewText" type="text" placeholder="Tulis testimoni singkat..." class="col-span-2 p-2.5 sm:p-2 rounded-lg text-xs bg-white text-obsidian" />
                 </div>
               </div>
-              <button onclick="addNewReview()" class="mt-3 w-full py-2.5 rounded-xl bg-cobalt text-white font-hero font-bold text-[11px] uppercase hover:bg-acid hover:text-obsidian transition">
+              <button onclick="addNewReview()" class="mt-3 w-full py-2.5 rounded-xl bg-cobalt text-white font-hero font-bold text-[11px] uppercase hover:bg-acid hover:text-obsidian active:scale-95 transition">
                 Publikasikan Ulasan →
               </button>
             </div>
@@ -96,17 +98,17 @@
 
         </div>
 
-        <!-- Baris Bawah: Live Verified Reviews Row -->
-        <div id="testimonialList" class="grid grid-cols-1 md:grid-cols-3 gap-3">
-          <div class="bg-surface px-4 py-2.5 rounded-xl border-l-4 border-cobalt flex items-center justify-between">
+        <!-- Baris Bawah: Live Verified Reviews Row (Swipeable di Mobile) -->
+        <div id="testimonialList" class="flex md:grid md:grid-cols-3 gap-3 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar -mx-4 px-4 md:mx-0 md:px-0 pb-1 md:pb-0">
+          <div class="w-[82vw] max-w-[310px] md:w-auto md:max-w-none shrink-0 snap-center bg-surface px-4 py-2.5 rounded-xl border-l-4 border-cobalt flex items-center justify-between">
             <p class="text-[11px] text-obsidian truncate">"Pilih foto RAW di portal praktis banget!" — <strong>Bima & Sekar</strong></p>
             <span class="text-cobalt text-xs font-bold ml-2">5/5</span>
           </div>
-          <div class="bg-surface px-4 py-2.5 rounded-xl border-l-4 border-obsidian flex items-center justify-between">
+          <div class="w-[82vw] max-w-[310px] md:w-auto md:max-w-none shrink-0 snap-center bg-surface px-4 py-2.5 rounded-xl border-l-4 border-obsidian flex items-center justify-between">
             <p class="text-[11px] text-obsidian truncate">"Kalender real-time & QRIS DP langsung terkunci." — <strong>Nadia (UGM)</strong></p>
             <span class="text-cobalt text-xs font-bold ml-2">5/5</span>
           </div>
-          <div class="bg-surface px-4 py-2.5 rounded-xl border-l-4 border-cobalt flex items-center justify-between">
+          <div class="w-[82vw] max-w-[310px] md:w-auto md:max-w-none shrink-0 snap-center bg-surface px-4 py-2.5 rounded-xl border-l-4 border-cobalt flex items-center justify-between">
             <p class="text-[11px] text-obsidian truncate">"H+1 draft naik, hasil G-Drive super tajam!" — <strong>Kopi Merapi</strong></p>
             <span class="text-cobalt text-xs font-bold ml-2">5/5</span>
           </div>

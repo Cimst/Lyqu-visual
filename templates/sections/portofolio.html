@@ -1,39 +1,42 @@
     <!-- ===================================================================
-         SLIDE 02: PORTOFOLIO BENTO DARK DECK (100VH LOCKED - GAYA GAMBAR 2)
+         SLIDE 02: PORTOFOLIO BENTO DARK DECK (100VH DESKTOP / SWIPE MOBILE)
          =================================================================== -->
-    <section id="slide-2" class="deck-slide bg-obsidian text-white pt-16 pb-6 px-4 sm:px-8">
+    <section id="slide-2" class="deck-slide bg-obsidian text-white pt-14 sm:pt-16 pb-8 sm:pb-6 px-4 sm:px-8">
       
-      <div class="max-w-7xl w-full mx-auto flex-1 flex flex-col justify-between">
+      <div class="max-w-7xl w-full mx-auto flex-1 flex flex-col justify-between gap-4 sm:gap-0">
         
         <!-- Baris Atas: Judul Kapsul Miring + Filter 5 Genre -->
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4">
-          <div class="anim-el flex items-center gap-3">
-            <span class="bg-cobalt text-white font-hero font-extrabold text-lg sm:text-2xl px-5 py-1.5 rounded-full -rotate-2 shadow-lg">
-              KOLEKSI KARYA
-            </span>
-            <span class="bg-acid text-obsidian font-hero font-extrabold text-lg sm:text-2xl px-5 py-1.5 rounded-full rotate-2 -ml-3 shadow-lg">
-              LYQU VISUAL
-            </span>
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3.5 sm:gap-4">
+          <div class="anim-el flex items-center justify-between">
+            <div class="flex items-center gap-2 sm:gap-3">
+              <span class="bg-cobalt text-white font-hero font-extrabold text-sm sm:text-2xl px-3.5 sm:px-5 py-1.5 rounded-full -rotate-2 shadow-lg">
+                KOLEKSI KARYA
+              </span>
+              <span class="bg-acid text-obsidian font-hero font-extrabold text-sm sm:text-2xl px-3.5 sm:px-5 py-1.5 rounded-full rotate-2 -ml-2.5 sm:-ml-3 shadow-lg">
+                LYQU VISUAL
+              </span>
+            </div>
+            <span class="md:hidden font-mono text-[10px] text-acid/90">Geser →</span>
           </div>
 
-          <!-- Filter Genre Buttons -->
-          <div class="anim-el flex flex-wrap gap-1.5" id="portfolioFilters">
-            <button onclick="filterGallery('all', this)" class="px-4 py-1.5 rounded-full text-[11px] font-hero font-bold bg-acid text-obsidian transition">SEMUA (4)</button>
-            <button onclick="filterGallery('Wedding', this)" class="px-4 py-1.5 rounded-full text-[11px] font-hero font-bold bg-white/10 text-white hover:bg-cobalt transition">WEDDING</button>
-            <button onclick="filterGallery('Event', this)" class="px-4 py-1.5 rounded-full text-[11px] font-hero font-bold bg-white/10 text-white hover:bg-cobalt transition">EVENT</button>
-            <button onclick="filterGallery('Produk', this)" class="px-4 py-1.5 rounded-full text-[11px] font-hero font-bold bg-white/10 text-white hover:bg-cobalt transition">PRODUK</button>
-            <button onclick="filterGallery('Portrait', this)" class="px-4 py-1.5 rounded-full text-[11px] font-hero font-bold bg-white/10 text-white hover:bg-cobalt transition">PORTRAIT</button>
+          <!-- Filter Genre Buttons (Horizontal Swipe di Mobile) -->
+          <div class="anim-el flex flex-nowrap sm:flex-wrap gap-1.5 overflow-x-auto no-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0 pb-1 sm:pb-0" id="portfolioFilters">
+            <button onclick="filterGallery('all', this)" class="shrink-0 px-4 py-1.5 rounded-full text-[11px] font-hero font-bold bg-acid text-obsidian transition">SEMUA (4)</button>
+            <button onclick="filterGallery('Wedding', this)" class="shrink-0 px-4 py-1.5 rounded-full text-[11px] font-hero font-bold bg-white/10 text-white hover:bg-cobalt transition">WEDDING</button>
+            <button onclick="filterGallery('Event', this)" class="shrink-0 px-4 py-1.5 rounded-full text-[11px] font-hero font-bold bg-white/10 text-white hover:bg-cobalt transition">EVENT</button>
+            <button onclick="filterGallery('Produk', this)" class="shrink-0 px-4 py-1.5 rounded-full text-[11px] font-hero font-bold bg-white/10 text-white hover:bg-cobalt transition">PRODUK</button>
+            <button onclick="filterGallery('Portrait', this)" class="shrink-0 px-4 py-1.5 rounded-full text-[11px] font-hero font-bold bg-white/10 text-white hover:bg-cobalt transition">PORTRAIT</button>
           </div>
         </div>
 
-        <!-- Tengah: 2x2 Bento Grid Kompak (Pas 1 Layar Penuh) -->
-        <div id="galleryGrid" class="grid grid-cols-1 md:grid-cols-2 gap-5 my-auto py-4">
+        <!-- Tengah: Swipeable Carousel di Mobile, 2x2 Bento Grid di Tablet/Desktop -->
+        <div id="galleryGrid" class="flex md:grid md:grid-cols-2 gap-4 sm:gap-5 overflow-x-auto md:overflow-visible snap-x snap-mandatory no-scrollbar -mx-4 px-4 md:mx-0 md:px-0 my-auto py-4">
           <!-- Di-render dinamis oleh JS -->
         </div>
 
         <!-- Bawah: Kinetic Marquee Strip -->
         <div class="overflow-hidden bg-white/5 border border-white/10 rounded-full py-2">
-          <div class="marquee-track font-mono text-[11px] text-acid flex items-center gap-8">
+          <div class="marquee-track font-mono text-[10px] sm:text-[11px] text-acid flex items-center gap-8">
             <span>OPTIMASI WEBP &lt; 300KB (CORE WEB VITALS READY)</span>
             <span>•</span>
             <span>SIGNATURE 16-BIT COLOR GRADING</span>

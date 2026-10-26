@@ -1,72 +1,95 @@
     <!-- ===================================================================
-         SLIDE 01: HERO COLLAGE + 3 BENTO WORKFLOW (100VH LOCKED)
+         SLIDE 01: HERO COLLAGE + 3 BENTO WORKFLOW (100VH DESKTOP / MOBILE-FIRST)
          =================================================================== -->
-    <section id="slide-1" class="deck-slide hero-blueprint pt-14">
+    <section id="slide-1" class="deck-slide hero-blueprint pt-16 sm:pt-14">
       
-      <!-- Top Hero Collage Stage (62% Tinggi Layar) -->
-      <div class="relative flex-1 flex items-center justify-center px-4">
+      <!-- Top Hero Collage Stage -->
+      <div class="relative flex-1 flex items-center justify-center px-4 py-4 sm:py-0">
         <div class="relative w-full max-w-6xl mx-auto flex flex-col items-center justify-center">
 
           <!-- Sticker Pills "2026" & "YOGYAKARTA" -->
-          <div class="anim-el relative z-30 flex items-center gap-2.5 mb-1">
-            <span class="bg-acid text-obsidian font-hero font-black text-[11px] px-3.5 py-1 rounded-full -rotate-12 shadow-md">
+          <div class="anim-el relative z-30 flex items-center gap-2 sm:gap-2.5 mb-2 sm:mb-1">
+            <span class="bg-acid text-obsidian font-hero font-black text-[10px] sm:text-[11px] px-3 sm:px-3.5 py-1 rounded-full -rotate-6 sm:-rotate-12 shadow-md">
               2026 EDITION
             </span>
-            <span class="bg-obsidian text-acid font-hero font-bold text-[11px] px-3.5 py-1 rounded-full rotate-6 shadow-md">
+            <span class="bg-obsidian text-acid font-hero font-bold text-[10px] sm:text-[11px] px-3 sm:px-3.5 py-1 rounded-full rotate-3 sm:rotate-6 shadow-md border border-white/15">
               YOGYAKARTA STUDIO
             </span>
           </div>
 
           <!-- SVG Doodle # Kiri Atas -->
-          <svg class="w-16 h-16 sm:w-24 sm:h-24 absolute -top-4 left-[8%] sm:left-[15%] z-20 pointer-events-none" viewBox="0 0 120 120" fill="none">
+          <svg class="w-12 h-12 sm:w-24 sm:h-24 absolute -top-2 left-[2%] sm:-top-4 sm:left-[15%] z-20 pointer-events-none opacity-90" viewBox="0 0 120 120" fill="none">
             <path class="svg-draw" d="M45 15 L30 105 M85 15 L70 105 M15 45 L105 40 M12 80 L102 75" stroke="#C6FF00" stroke-width="12" stroke-linecap="round" />
           </svg>
 
           <!-- SVG Doodle Panah Kanan Atas -->
-          <svg class="w-24 h-24 sm:w-32 sm:h-32 absolute -top-4 right-[8%] sm:right-[14%] z-20 pointer-events-none" viewBox="0 0 160 160" fill="none">
+          <svg class="w-16 h-16 sm:w-32 sm:h-32 absolute -top-2 right-[2%] sm:-top-4 sm:right-[14%] z-20 pointer-events-none opacity-90" viewBox="0 0 160 160" fill="none">
             <path class="svg-draw" d="M25 65 C55 10, 145 15, 130 75 C118 115, 75 125, 65 135 M65 135 L98 132 M65 135 L72 102" stroke="#C6FF00" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
 
           <!-- GIANT STACKED 3-LINE HERO TEXT -->
-          <h1 class="giant-stacked text-white text-center text-[13vw] sm:text-[10.5vw] xl:text-[118px] z-10 select-none">
+          <h1 class="giant-stacked text-white text-center text-[15vw] sm:text-[10.5vw] xl:text-[118px] z-10 select-none py-1 sm:py-0">
             <span class="hero-line block">LYQU</span>
-            <span class="hero-line block">VISUAL</span>
+            <span class="hero-line block text-acid sm:text-white">VISUAL</span>
             <span class="hero-line block">STUDIO</span>
           </h1>
 
-          <!-- FROSTED GLASS CARD 1 (Kanan Atas - Levitating + 3D Tilt) -->
-          <div id="glassCard1"
-               data-tilt data-tilt-max="20" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.5"
-               onclick="triggerShutterLut(0)"
-               class="frosted-glass float-slow-1 cursor-pointer w-44 sm:w-52 p-3.5 rounded-[28px] absolute z-30 top-[8%] right-[12%] sm:right-[23%] flex flex-col items-center text-center group">
-            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-[3px] border-white shadow-lg mb-2 relative">
-              <img id="heroCardImg0" src="{{ url_for('static', filename='images/hero/graduation-closeup.jpg') }}" alt="Potret dekat wisudawati mengenakan toga" class="w-full h-full object-cover transition duration-500" />
-              <span class="absolute bottom-0.5 right-0.5 bg-acid text-obsidian font-mono text-[8px] font-bold px-1.5 py-0.5 rounded-full">KLIK LUT</span>
-            </div>
-            <p class="font-bold text-white text-sm tracking-tight drop-shadow">wisuda.portrait</p>
-            <p class="font-mono text-[10px] text-white/85">Potret • Momen kelulusan</p>
+          <!-- Mobile Interactive LUT Hint Pill (< 640px) -->
+          <div class="sm:hidden z-30 mt-2 mb-1 inline-flex items-center gap-1.5 bg-obsidian/70 backdrop-blur-md border border-white/25 text-white px-3 py-1 rounded-full font-mono text-[10px]">
+            <span class="text-acid">⚡</span>
+            <span>Tap kartu foto untuk tes filter RAW / LUT</span>
           </div>
 
-          <!-- FROSTED GLASS CARD 2 (Kiri Bawah - Levitating + 3D Tilt) -->
-          <div id="glassCard2"
-               data-tilt data-tilt-max="20" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.5"
-               onclick="triggerShutterLut(1)"
-               class="frosted-glass float-slow-2 cursor-pointer w-44 sm:w-52 p-3.5 rounded-[28px] absolute z-30 -bottom-5 left-[10%] sm:left-[24%] flex flex-col items-center text-center group">
-            <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden border-[3px] border-white shadow-lg mb-2 relative">
-              <img id="heroCardImg1" src="{{ url_for('static', filename='images/hero/graduation-garden.jpg') }}" alt="Wisudawati berpose di taman" class="w-full h-full object-cover transition duration-500" />
-              <span class="absolute bottom-0.5 right-0.5 bg-obsidian text-acid font-mono text-[8px] font-bold px-1.5 py-0.5 rounded-full">WISUDA</span>
+          <!-- Wrapper: 2-Column Mobile Showcase / Floating Desktop Collage -->
+          <div class="grid grid-cols-2 gap-3 w-full max-w-[360px] mt-2 sm:mt-0 sm:max-w-none sm:contents relative z-30">
+
+            <!-- FROSTED GLASS CARD 1 (Kanan Atas di Desktop, Kiri di Mobile Grid) -->
+            <div id="glassCard1"
+                 data-tilt data-tilt-max="20" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.5"
+                 onclick="triggerShutterLut(0)"
+                 class="frosted-glass float-slow-1 cursor-pointer w-full sm:w-52 p-3 sm:p-3.5 rounded-[24px] sm:rounded-[28px] sm:absolute z-30 sm:top-[8%] sm:right-[23%] flex flex-col items-center text-center group">
+              <div class="w-16 h-16 sm:w-24 sm:h-24 rounded-full overflow-hidden border-[2.5px] sm:border-[3px] border-white shadow-lg mb-1.5 sm:mb-2 relative">
+                <img id="heroCardImg0" src="{{ url_for('static', filename='images/hero/graduation-closeup.jpg') }}" alt="Potret dekat wisudawati mengenakan toga" class="w-full h-full object-cover transition duration-500" />
+                <span class="absolute bottom-0.5 right-0.5 bg-acid text-obsidian font-mono text-[8px] font-bold px-1.5 py-0.5 rounded-full">KLIK LUT</span>
+              </div>
+              <p class="font-bold text-white text-xs sm:text-sm tracking-tight drop-shadow">wisuda.portrait</p>
+              <p class="font-mono text-[9px] sm:text-[10px] text-white/85">Potret • Kelulusan</p>
             </div>
-            <p class="font-bold text-white text-sm tracking-tight drop-shadow">graduation.jogja</p>
-            <p class="font-mono text-[10px] text-white/85">Portrait • Yogyakarta</p>
+
+            <!-- FROSTED GLASS CARD 2 (Kiri Bawah di Desktop, Kanan di Mobile Grid) -->
+            <div id="glassCard2"
+                 data-tilt data-tilt-max="20" data-tilt-speed="400" data-tilt-glare="true" data-tilt-max-glare="0.5"
+                 onclick="triggerShutterLut(1)"
+                 class="frosted-glass float-slow-2 cursor-pointer w-full sm:w-52 p-3 sm:p-3.5 rounded-[24px] sm:rounded-[28px] sm:absolute z-30 sm:-bottom-5 sm:left-[24%] flex flex-col items-center text-center group">
+              <div class="w-16 h-16 sm:w-24 sm:h-24 rounded-full overflow-hidden border-[2.5px] sm:border-[3px] border-white shadow-lg mb-1.5 sm:mb-2 relative">
+                <img id="heroCardImg1" src="{{ url_for('static', filename='images/hero/graduation-garden.jpg') }}" alt="Wisudawati berpose di taman" class="w-full h-full object-cover transition duration-500" />
+                <span class="absolute bottom-0.5 right-0.5 bg-obsidian text-acid font-mono text-[8px] font-bold px-1.5 py-0.5 rounded-full">WISUDA</span>
+              </div>
+              <p class="font-bold text-white text-xs sm:text-sm tracking-tight drop-shadow">graduation.jogja</p>
+              <p class="font-mono text-[9px] sm:text-[10px] text-white/85">Portrait • Jogja</p>
+            </div>
+
           </div>
 
-          <!-- SVG Doodle Panah Kiri Bawah -->
-          <svg class="w-24 h-24 sm:w-28 sm:h-28 absolute -bottom-6 left-[8%] sm:left-[14%] z-20 pointer-events-none" viewBox="0 0 150 150" fill="none">
+          <!-- Mobile Quick CTA + Stamp Row (< 640px) -->
+          <div class="sm:hidden mt-4 flex items-center justify-between w-full max-w-[360px] bg-obsidian/85 backdrop-blur-md border border-white/20 rounded-2xl p-2.5 pl-4 z-30 shadow-xl">
+            <div>
+              <span class="font-mono text-[9px] text-acid uppercase block">STUDIO FOTOGRAFI JOGJA</span>
+              <span class="font-hero font-bold text-xs text-white">Kunci Jadwal Sesi DP 30%</span>
+            </div>
+            <a href="#slide-4" class="bg-acid text-obsidian font-hero font-black text-[10px] px-3.5 py-2.5 rounded-xl flex items-center gap-1.5 shadow">
+              <span>BOOKING</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          <!-- SVG Doodle Panah Kiri Bawah (Desktop/Tablet) -->
+          <svg class="hidden sm:block w-24 h-24 sm:w-28 sm:h-28 absolute -bottom-6 left-[8%] sm:left-[14%] z-20 pointer-events-none" viewBox="0 0 150 150" fill="none">
             <path class="svg-draw" d="M35 95 C15 55, 65 15, 70 60 C75 105, 50 125, 115 95 M115 95 L92 82 M115 95 L102 120" stroke="#C6FF00" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
 
-          <!-- Rotating Circular Stamp Kanan Bawah -->
-          <a href="#slide-4" class="magnetic-el w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-acid absolute -bottom-4 right-[8%] sm:right-[15%] z-30 flex items-center justify-center shadow-2xl hover:scale-110 transition-transform">
+          <!-- Rotating Circular Stamp Kanan Bawah (Desktop/Tablet) -->
+          <a href="#slide-4" class="hidden sm:flex magnetic-el w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-acid absolute -bottom-4 right-[8%] sm:right-[15%] z-30 items-center justify-center shadow-2xl hover:scale-110 transition-transform">
             <svg class="w-full h-full spin-slow p-1" viewBox="0 0 100 100">
               <defs>
                 <path id="circleTextPath" d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
@@ -85,14 +108,23 @@
         </div>
       </div>
 
-      <!-- Bottom 3 Bento Workflow Cards (38% Tinggi Layar - Pas 1 Slide Penuh) -->
-      <div class="relative z-30 bg-white rounded-t-[36px] sm:rounded-t-[48px] py-6 px-4 sm:px-8 shadow-[0_-15px_40px_rgba(0,0,0,0.22)]">
-        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-5 items-center relative">
+      <!-- Bottom 3 Bento Workflow Cards (Swipeable di Mobile, 3-Col Grid di Desktop) -->
+      <div class="relative z-30 bg-white rounded-t-[32px] sm:rounded-t-[48px] py-5 sm:py-6 px-4 sm:px-8 shadow-[0_-15px_40px_rgba(0,0,0,0.22)]">
+
+        <!-- Mobile Header Bar untuk 3 Bento Workflow -->
+        <div class="lg:hidden flex items-center justify-between mb-3 px-1">
+          <span class="font-mono text-[10px] font-bold uppercase text-cobalt">● 3 LANGKAH ALUR STUDIO</span>
+          <span class="font-mono text-[10px] font-bold text-neutral-500">Geser Kartu →</span>
+        </div>
+
+        <div class="max-w-6xl mx-auto flex lg:grid lg:grid-cols-3 gap-3.5 sm:gap-5 items-stretch lg:items-center overflow-x-auto lg:overflow-visible snap-x snap-mandatory no-scrollbar -mx-4 px-4 lg:mx-0 lg:px-0 pb-1 lg:pb-0 relative">
 
           <!-- Bento 1 -->
-          <div class="anim-el bg-surface rounded-[24px] p-4 sm:p-5 text-center flex flex-col items-center hover:-translate-y-1 transition">
-            <h2 class="font-hero font-black text-sm sm:text-base uppercase leading-tight">01. PILIH PAKET & KONSEP</h2>
-            <p class="text-[11px] text-neutral-700 mt-1 mb-3">Wedding, Pre-Wed, Event & Produk di Yogyakarta</p>
+          <div class="anim-el w-[80vw] max-w-[290px] lg:w-auto lg:max-w-none shrink-0 snap-center bg-surface border border-neutral-200/80 rounded-[24px] p-4 sm:p-5 text-center flex flex-col items-center justify-between hover:-translate-y-1 transition">
+            <div>
+              <h2 class="font-hero font-black text-sm sm:text-base uppercase leading-tight">01. PILIH PAKET & KONSEP</h2>
+              <p class="text-[11px] text-neutral-700 mt-1 mb-3">Wedding, Pre-Wed, Event & Produk di Yogyakarta</p>
+            </div>
             <div class="flex items-center justify-center">
               <div class="bg-cobalt text-white px-3 py-2 rounded-xl -rotate-6 shadow flex items-center gap-2">
                 <img src="{{ url_for('static', filename='images/hero/prewedding-golden-hour.jpg') }}" class="w-8 h-8 rounded-full object-cover border border-white" alt="Prewed" />
@@ -110,9 +142,11 @@
           </svg>
 
           <!-- Bento 2 -->
-          <div class="anim-el bg-surface rounded-[24px] p-4 sm:p-5 text-center flex flex-col items-center hover:-translate-y-1 transition">
-            <h2 class="font-hero font-black text-sm sm:text-base uppercase leading-tight">02. PILIH FOTO RAW</h2>
-            <p class="text-[11px] text-neutral-700 mt-1 mb-3">Pilih sendiri file RAW favoritmu di Portal Klien</p>
+          <div class="anim-el w-[80vw] max-w-[290px] lg:w-auto lg:max-w-none shrink-0 snap-center bg-surface border border-neutral-200/80 rounded-[24px] p-4 sm:p-5 text-center flex flex-col items-center justify-between hover:-translate-y-1 transition">
+            <div>
+              <h2 class="font-hero font-black text-sm sm:text-base uppercase leading-tight">02. PILIH FOTO RAW</h2>
+              <p class="text-[11px] text-neutral-700 mt-1 mb-3">Pilih sendiri file RAW favoritmu di Portal Klien</p>
+            </div>
             <div class="w-full max-w-[220px] bg-cobalt text-white rounded-full px-4 py-2 flex items-center justify-between font-mono text-[11px] font-bold shadow">
               <span>61MP RAW</span>
               <span class="text-acid">PROOFING</span>
@@ -125,9 +159,11 @@
           </svg>
 
           <!-- Bento 3 -->
-          <div class="anim-el bg-surface rounded-[24px] p-4 sm:p-5 text-center flex flex-col items-center hover:-translate-y-1 transition">
-            <h2 class="font-hero font-black text-sm sm:text-base uppercase leading-tight">03. SLA & GOOGLE DRIVE</h2>
-            <p class="text-[11px] text-neutral-700 mt-1 mb-2.5">Draft H+1 & Final High-Res 7–14 hari di Dashboard</p>
+          <div class="anim-el w-[80vw] max-w-[290px] lg:w-auto lg:max-w-none shrink-0 snap-center bg-surface border border-neutral-200/80 rounded-[24px] p-4 sm:p-5 text-center flex flex-col items-center justify-between hover:-translate-y-1 transition">
+            <div>
+              <h2 class="font-hero font-black text-sm sm:text-base uppercase leading-tight">03. SLA & GOOGLE DRIVE</h2>
+              <p class="text-[11px] text-neutral-700 mt-1 mb-2.5">Draft H+1 & Final High-Res 7–14 hari di Dashboard</p>
+            </div>
             <div class="bg-acid text-obsidian px-5 py-2 rounded-2xl relative shadow">
               <span class="text-[9px] font-mono font-bold uppercase block">EST. DRAFT SLA</span>
               <span class="font-hero font-black text-base sm:text-lg"><span class="counter-num" data-target="48">0</span> JAM</span>

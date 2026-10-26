@@ -19,16 +19,18 @@ const slideTitles = [
     // 2. CUSTOM VIEWFINDER CURSOR & MAGNETIC BUTTONS
     const cursorEl = document.getElementById('viewfinderCursor');
     window.addEventListener('mousemove', (e) => {
+      if (!cursorEl) return;
       gsap.to(cursorEl, { x: e.clientX, y: e.clientY, duration: 0.12, ease: "power2.out" });
     });
 
     document.querySelectorAll('a, button, select, .frosted-glass').forEach(el => {
-      el.addEventListener('mouseenter', () => cursorEl.classList.add('cursor-hover'));
-      el.addEventListener('mouseleave', () => cursorEl.classList.remove('cursor-hover'));
+      el.addEventListener('mouseenter', () => cursorEl && cursorEl.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => cursorEl && cursorEl.classList.remove('cursor-hover'));
     });
 
     document.querySelectorAll('.magnetic-el').forEach(btn => {
       btn.addEventListener('mousemove', (e) => {
+        if (window.innerWidth < 1024) return;
         const rect = btn.getBoundingClientRect();
         const x = e.clientX - rect.left - rect.width / 2;
         const y = e.clientY - rect.top - rect.height / 2;
@@ -45,19 +47,19 @@ const slideTitles = [
       const items = genre === 'all' ? bentoPortfolioData : bentoPortfolioData.filter(x => Array.isArray(x.genre) ? x.genre.includes(genre) : x.genre === genre);
 
       container.innerHTML = items.map(item => `
-        <div class="gallery-card ${item.cardStyle} ${item.imageOverlap ? 'gallery-card--image-overlap' : ''} rounded-[24px] p-5 relative flex flex-col justify-between shadow-lg mt-2 hover:-translate-y-1 transition">
-          <span class="${item.tabStyle} font-hero font-bold text-[10px] px-3.5 py-1 rounded-full absolute -top-3 right-5 rotate-3 shadow">
+        <div class="gallery-card w-[85vw] max-w-[340px] md:w-auto md:max-w-none shrink-0 snap-center ${item.cardStyle} ${item.imageOverlap ? 'gallery-card--image-overlap' : ''} rounded-[24px] p-4 sm:p-5 relative flex flex-col justify-between shadow-lg mt-2 hover:-translate-y-1 transition">
+          <span class="${item.tabStyle} font-hero font-bold text-[9px] sm:text-[10px] px-3 sm:px-3.5 py-1 rounded-full absolute -top-3 right-4 sm:right-5 rotate-2 sm:rotate-3 shadow z-20">
             ${item.pillTab}
           </span>
 
-          <div class="grid grid-cols-12 gap-4 items-center">
-            <div class="col-span-7 space-y-1.5 relative z-10">
+          <div class="flex flex-col sm:grid sm:grid-cols-12 gap-3 sm:gap-4 items-stretch sm:items-center">
+            <div class="order-1 sm:order-2 sm:col-span-5 rounded-xl ${item.imageOverlap ? 'portfolio-image-stage--overlap' : 'overflow-hidden'}">
+              <img src="${item.img}" alt="${item.title}" style="object-position: ${item.imgPosition || 'center'};" class="w-full h-36 sm:h-28 object-cover hover:scale-110 transition duration-500" />
+            </div>
+            <div class="order-2 sm:order-1 sm:col-span-7 space-y-1 sm:space-y-1.5 relative z-10">
               <span class="font-mono text-[10px] uppercase opacity-75">GENRE: ${Array.isArray(item.genre) ? item.genre.join(' & ') : item.genre}</span>
               <h3 class="font-hero font-extrabold text-sm sm:text-base leading-snug">${item.title}</h3>
               <p class="text-[11px] opacity-85 leading-relaxed">${item.desc}</p>
-            </div>
-            <div class="col-span-5 rounded-xl ${item.imageOverlap ? 'portfolio-image-stage--overlap' : 'overflow-hidden'}">
-              <img src="${item.img}" alt="${item.title}" style="object-position: ${item.imgPosition || 'center'};" class="w-full h-28 object-cover hover:scale-110 transition duration-500" />
             </div>
           </div>
 
@@ -79,9 +81,9 @@ const slideTitles = [
 
     function filterGallery(genre, btnEl) {
       document.querySelectorAll('#portfolioFilters button').forEach(b => {
-        b.className = 'px-4 py-1.5 rounded-full text-[11px] font-hero font-bold bg-white/10 text-white hover:bg-cobalt transition';
+        b.className = 'shrink-0 px-4 py-1.5 rounded-full text-[11px] font-hero font-bold bg-white/10 text-white hover:bg-cobalt transition';
       });
-      btnEl.className = 'px-4 py-1.5 rounded-full text-[11px] font-hero font-bold bg-acid text-obsidian transition';
+      btnEl.className = 'shrink-0 px-4 py-1.5 rounded-full text-[11px] font-hero font-bold bg-acid text-obsidian transition';
       renderBentoGallery(genre);
     }
 
@@ -102,11 +104,11 @@ let selectedDay = 28;
       let html = '';
       for (let d = 1; d <= 28; d++) {
         if (bookedDates.includes(d)) {
-          html += `<button disabled class="min-w-[40px] min-h-[40px] flex items-center justify-center rounded bg-neutral-200 text-neutral-400 line-through cursor-not-allowed">${d}</button>`;
+          html += `<button disabled class="min-w-[34px] min-h-[34px] sm:min-w-[40px] sm:min-h-[40px] flex items-center justify-center rounded bg-neutral-200 text-neutral-400 line-through cursor-not-allowed">${d}</button>`;
         } else if (d === selectedDay) {
-          html += `<button onclick="selectCalendarDate(${d})" class="min-w-[40px] min-h-[40px] flex items-center justify-center rounded bg-cobalt text-white font-bold shadow">${d}</button>`;
+          html += `<button onclick="selectCalendarDate(${d})" class="min-w-[34px] min-h-[34px] sm:min-w-[40px] sm:min-h-[40px] flex items-center justify-center rounded bg-cobalt text-white font-bold shadow">${d}</button>`;
         } else {
-          html += `<button onclick="selectCalendarDate(${d})" class="min-w-[40px] min-h-[40px] flex items-center justify-center rounded bg-surface hover:bg-acid transition">${d}</button>`;
+          html += `<button onclick="selectCalendarDate(${d})" class="min-w-[34px] min-h-[34px] sm:min-w-[40px] sm:min-h-[40px] flex items-center justify-center rounded bg-surface hover:bg-acid transition">${d}</button>`;
         }
       }
       grid.innerHTML = html;
@@ -126,6 +128,10 @@ let selectedDay = 28;
     function choosePackage(priceVal, title) {
       document.getElementById('calcPackage').value = priceVal;
       recalculateDp();
+      if (window.innerWidth < 1024) {
+        const ticket = document.getElementById('booking-ticket');
+        if (ticket) ticket.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     }
 
     function recalculateDp() {
@@ -156,7 +162,7 @@ let filterSelectedActive = false;
             </span>
           </div>
           <div class="px-2.5 py-1.5 flex items-center justify-between font-mono text-[10px]">
-            <span class="font-bold">${p.id}</span>
+            <span class="font-bold truncate max-w-[115px]">${p.id}</span>
             <span class="${p.selected ? 'text-cobalt font-bold' : 'text-neutral-400'}">${p.selected ? 'ANTREAN EDIT' : 'RAW'}</span>
           </div>
         </button>
@@ -212,7 +218,11 @@ let filterSelectedActive = false;
       const email = document.getElementById('ssoEmail').value || 'klien@gmail.com';
       loggedUser = { name, email };
 
-      document.getElementById('navAuthText').innerText = name.split(' ')[0] + ' ✓';
+      const shortName = name.split(' ')[0] + ' ✓';
+      document.getElementById('navAuthText').innerText = shortName;
+      const mobileAuthText = document.getElementById('navAuthTextMobile');
+      if (mobileAuthText) mobileAuthText.innerText = shortName;
+
       document.getElementById('ssoStatusPill').innerText = `SSO: ${email}`;
       document.getElementById('clientNameBadge').innerText = `${name} (${email})`;
       document.getElementById('clientAvatarBadge').innerText = name.charAt(0).toUpperCase();
@@ -254,7 +264,7 @@ let filterSelectedActive = false;
 
       const author = loggedUser ? loggedUser.name.split(' ')[0] : 'Klien Jogja';
       const html = `
-        <div class="bg-acid/40 px-4 py-2.5 rounded-xl border-l-4 border-obsidian flex items-center justify-between">
+        <div class="w-[82vw] max-w-[310px] md:w-auto md:max-w-none shrink-0 snap-center bg-acid/40 px-4 py-2.5 rounded-xl border-l-4 border-obsidian flex items-center justify-between">
           <p class="text-[11px] text-obsidian truncate">"${text}" — <strong>${author}</strong></p>
           <span class="text-cobalt text-xs font-bold ml-2">${ratingScore}/5</span>
         </div>
@@ -265,13 +275,19 @@ let filterSelectedActive = false;
       document.getElementById('inputReviewText').value = '';
     }
 
-    // 10. INTERSECTION OBSERVER: SLIDE ENTRANCE MOTION + ACTIVE NAV DOTS
+    // 10. INTERSECTION OBSERVER: SLIDE ENTRANCE MOTION + ACTIVE NAV LINKS (SIDEBAR & MOBILE BOTTOM BAR)
     window.addEventListener('DOMContentLoaded', () => {
       renderBentoGallery('all');
       renderMiniCalendar();
       renderProofingCards();
       recalculateDp();
 
+      // Matikan VanillaTilt pada perangkat layar sentuh murni agar tap kartu lebih responsif
+      if (window.matchMedia && window.matchMedia('(hover: none)').matches) {
+        document.querySelectorAll('[data-tilt]').forEach(el => {
+          if (el.vanillaTilt) el.vanillaTilt.destroy();
+        });
+      }
 
       // Jika dibuka melalui route spesifik (misal /portofolio), scroll ke slide tersebut
       if (typeof window.INITIAL_SLIDE_INDEX === 'number' && window.INITIAL_SLIDE_INDEX > 0) {
@@ -289,6 +305,7 @@ let filterSelectedActive = false;
 
       const slides = document.querySelectorAll('.deck-slide');
       const slideLinks = document.querySelectorAll('.slide-link');
+      const mobileBottomLinks = document.querySelectorAll('.mobile-bottom-link');
       const sidebarToggle = document.getElementById('sidebarToggleBtn');
       const sidebarBackdrop = document.getElementById('sidebarBackdrop');
       const sidebarClose = document.getElementById('sidebarCloseBtn');
@@ -317,13 +334,24 @@ let filterSelectedActive = false;
           if (entry.isIntersecting) {
             const idx = Array.from(slides).indexOf(entry.target);
 
-
             // Update tag <title> sesuai slide yang sedang aktif
             if (slideTitles[idx]) {
               document.title = slideTitles[idx];
             }
+
             // Update active state pada navigasi sidebar
             slideLinks.forEach((link, i) => {
+              const isActive = i === idx;
+              link.classList.toggle('is-active', isActive);
+              if (isActive) {
+                link.setAttribute('aria-current', 'page');
+              } else {
+                link.removeAttribute('aria-current');
+              }
+            });
+
+            // Update active state pada Mobile Bottom Navigation Bar
+            mobileBottomLinks.forEach((link, i) => {
               const isActive = i === idx;
               link.classList.toggle('is-active', isActive);
               if (isActive) {
@@ -364,7 +392,7 @@ let filterSelectedActive = false;
             });
           }
         });
-      }, { threshold: 0.45 });
+      }, { threshold: window.innerWidth < 1024 ? 0.25 : 0.45 });
 
       slides.forEach(s => observer.observe(s));
     });
