@@ -42,22 +42,22 @@ const slideTitles = [
 
     function renderBentoGallery(genre) {
       const container = document.getElementById('galleryGrid');
-      const items = genre === 'all' ? bentoPortfolioData : bentoPortfolioData.filter(x => x.genre === genre);
+      const items = genre === 'all' ? bentoPortfolioData : bentoPortfolioData.filter(x => Array.isArray(x.genre) ? x.genre.includes(genre) : x.genre === genre);
 
       container.innerHTML = items.map(item => `
-        <div class="gallery-card ${item.cardStyle} rounded-[24px] p-5 relative flex flex-col justify-between shadow-lg mt-2 hover:-translate-y-1 transition">
+        <div class="gallery-card ${item.cardStyle} ${item.imageOverlap ? 'gallery-card--image-overlap' : ''} rounded-[24px] p-5 relative flex flex-col justify-between shadow-lg mt-2 hover:-translate-y-1 transition">
           <span class="${item.tabStyle} font-hero font-bold text-[10px] px-3.5 py-1 rounded-full absolute -top-3 right-5 rotate-3 shadow">
             ${item.pillTab}
           </span>
 
           <div class="grid grid-cols-12 gap-4 items-center">
-            <div class="col-span-7 space-y-1.5">
-              <span class="font-mono text-[10px] uppercase opacity-75">GENRE: ${item.genre}</span>
+            <div class="col-span-7 space-y-1.5 relative z-10">
+              <span class="font-mono text-[10px] uppercase opacity-75">GENRE: ${Array.isArray(item.genre) ? item.genre.join(' & ') : item.genre}</span>
               <h3 class="font-hero font-extrabold text-sm sm:text-base leading-snug">${item.title}</h3>
               <p class="text-[11px] opacity-85 leading-relaxed">${item.desc}</p>
             </div>
-            <div class="col-span-5 overflow-hidden rounded-xl">
-              <img src="${item.img}" alt="${item.title}" class="w-full h-28 object-cover hover:scale-110 transition duration-500" />
+            <div class="col-span-5 rounded-xl ${item.imageOverlap ? 'portfolio-image-stage--overlap' : 'overflow-hidden'}">
+              <img src="${item.img}" alt="${item.title}" style="object-position: ${item.imgPosition || 'center'};" class="w-full h-28 object-cover hover:scale-110 transition duration-500" />
             </div>
           </div>
 
@@ -141,48 +141,57 @@ let selectedDay = 28;
     }
 
 
-let filterStarActive = false;
+let filterSelectedActive = false;
 
     function renderProofingCards() {
       const grid = document.getElementById('proofingCardsGrid');
-      const list = filterStarActive ? rawPhotos.filter(p => p.starred) : rawPhotos;
+      const list = filterSelectedActive ? rawPhotos.filter(p => p.selected) : rawPhotos;
 
       grid.innerHTML = list.map(p => `
-        <div onclick="toggleProofStar('${p.id}')" class="cursor-pointer rounded-xl overflow-hidden bg-white shadow-sm border-2 transition hover:-translate-y-0.5 ${p.starred ? 'border-cobalt' : 'border-transparent'}">
+        <button type="button" onclick="toggleProofSelection('${p.id}')" aria-pressed="${p.selected}" aria-label="${p.selected ? 'Batalkan pilihan' : 'Pilih'} foto ${p.id}" class="proofing-photo-card shrink-0 cursor-pointer text-left rounded-xl overflow-hidden bg-white shadow-sm border-2 transition hover:-translate-y-0.5 snap-start ${p.selected ? 'border-cobalt' : 'border-transparent'}">
           <div class="relative">
-            <img src="${p.img}" alt="${p.id}" class="w-full h-24 sm:h-28 object-cover transition duration-300 ${p.starred ? '' : 'grayscale contrast-125'}" />
-            <span class="absolute top-1.5 right-1.5 px-2 py-0.5 rounded-full font-mono text-[9px] font-bold ${p.starred ? 'bg-acid text-obsidian' : 'bg-obsidian/75 text-white'}">
-              ${p.starred ? '★ FAVORIT' : '☆ PILIH'}
+            <img src="${p.img}" alt="${p.id}" loading="lazy" class="w-full h-32 sm:h-36 object-cover transition duration-300 ${p.selected ? '' : 'grayscale contrast-125'}" />
+            <span class="absolute top-1.5 right-1.5 px-2 py-0.5 rounded-full font-mono text-[9px] font-bold ${p.selected ? 'bg-acid text-obsidian' : 'bg-obsidian/75 text-white'}">
+              ${p.selected ? 'TERPILIH' : 'PILIH'}
             </span>
           </div>
           <div class="px-2.5 py-1.5 flex items-center justify-between font-mono text-[10px]">
             <span class="font-bold">${p.id}</span>
-            <span class="${p.starred ? 'text-cobalt font-bold' : 'text-neutral-400'}">${p.starred ? 'EDIT QUEUE' : 'RAW'}</span>
+            <span class="${p.selected ? 'text-cobalt font-bold' : 'text-neutral-400'}">${p.selected ? 'ANTREAN EDIT' : 'RAW'}</span>
           </div>
-        </div>
+        </button>
       `).join('');
 
-      document.getElementById('starredCounter').innerText = rawPhotos.filter(x => x.starred).length;
+      document.getElementById('selectedCounter').innerText = rawPhotos.filter(x => x.selected).length;
     }
 
-    function toggleProofStar(id) {
+    function scrollProofingGallery(direction) {
+      const gallery = document.getElementById('proofingCardsGrid');
+      const card = gallery.querySelector('.proofing-photo-card');
+      if (!card) return;
+
+      const gap = parseFloat(getComputedStyle(gallery).columnGap) || 0;
+      gallery.scrollLeft += direction * (card.getBoundingClientRect().width + gap);
+    }
+
+    function toggleProofSelection(id) {
       fireCameraFlash();
       const item = rawPhotos.find(x => x.id === id);
       if (item) {
-        item.starred = !item.starred;
+        item.selected = !item.selected;
         renderProofingCards();
       }
     }
 
-    function toggleFilterStarred() {
-      filterStarActive = !filterStarActive;
-      document.getElementById('btnOnlyStar').innerText = filterStarActive ? 'Semua RAW' : 'Filter ★ Saja';
+    function toggleFilterSelected() {
+      filterSelectedActive = !filterSelectedActive;
+      document.getElementById('btnOnlySelected').innerText = filterSelectedActive ? 'Semua RAW' : 'Pilihan Saja';
       renderProofingCards();
     }
 
     function lockProofingChoices() {
       fireCameraFlash();
-      const total = rawPhotos.filter(x => x.starred).length;
+      const total = rawPhotos.filter(x => x.selected).length;
       document.getElementById('clientProjectStatus').innerText = `Proyek: #LYQ-JGJ-2026 • ${total} Foto Masuk Antrean Grading`;
     }
 
@@ -240,15 +249,14 @@ let filterStarActive = false;
     // 9. TAMBAH ULASAN BARU
     function addNewReview() {
       const text = document.getElementById('inputReviewText').value.trim();
-      const starsCount = parseInt(document.getElementById('inputReviewStars').value, 10);
+      const ratingScore = parseInt(document.getElementById('inputReviewRating').value, 10);
       if (!text) return;
 
-      const stars = '★'.repeat(starsCount);
       const author = loggedUser ? loggedUser.name.split(' ')[0] : 'Klien Jogja';
       const html = `
         <div class="bg-acid/40 px-4 py-2.5 rounded-xl border-l-4 border-obsidian flex items-center justify-between">
           <p class="text-[11px] text-obsidian truncate">"${text}" — <strong>${author}</strong></p>
-          <span class="text-cobalt text-xs font-bold ml-2">${stars}</span>
+          <span class="text-cobalt text-xs font-bold ml-2">${ratingScore}/5</span>
         </div>
       `;
       const container = document.getElementById('testimonialList');
