@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+{% block title %}Paket Layanan {{ product.name }} — LYQU VISUAL STUDIO{% endblock %}
+{% block site_navigation %}{% endblock %}
+{% block site_modals %}{% endblock %}
+{% block page_scripts %}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen hero-blueprint text-obsidian flex flex-col justify-between py-6 px-4 sm:px-6 selection:bg-acid selection:text-obsidian">
+  
+  <!-- FLOATING GLASS TOP NAVBAR -->
+  <header class="max-w-4xl w-full mx-auto mb-6">
+    <nav class="bg-obsidian/90 backdrop-blur-xl border border-white/20 rounded-full px-4 py-2 shadow-xl flex items-center justify-between">
+      <a href="{{ url_for('beranda') }}" class="flex items-center gap-2.5">
+        <img src="{{ url_for('static', filename='images/logo/logo-mark-acid.png') }}" alt="LYQU Logo" class="w-6 h-6 object-contain" />
+        <span class="font-black text-xs sm:text-sm text-white">LYQU VISUAL STUDIO</span>
+      </a>
+      <a href="{{ url_for('paket_booking') }}" class="text-xs font-bold text-white/80 hover:text-acid transition flex items-center gap-1.5">
+        <span>← Semua Paket & Booking</span>
+      </a>
+    </nav>
+  </header>
+
+  <!-- PRODUCT DETAIL BENTO CARD -->
+  <main class="max-w-xl w-full mx-auto my-auto">
+    <div class="bg-white rounded-[32px] p-7 sm:p-9 shadow-2xl border-2 border-white/20 space-y-5">
+      
+      <div class="flex items-center justify-between gap-2">
+        <span class="rounded-full bg-cobalt/10 text-cobalt px-3.5 py-1 text-[10px] font-black uppercase tracking-wider">
+          KATALOG LAYANAN STUDIO
+        </span>
+        <span class="font-mono text-xs text-neutral-400 font-bold">#PRD-0{{ item_id }}</span>
+      </div>
+
+      <div>
+        <h1 class="text-2xl sm:text-3xl font-black text-obsidian tracking-tight">{{ product.name }}</h1>
+        <p class="text-xs text-neutral-500 mt-1">Layanan fotografi komprehensif dengan grading 16-bit RAW profesional di Yogyakarta.</p>
+      </div>
+
+      <!-- Ketersediaan Slot -->
+      <div>
+        {% if product.stock > 0 %}
+          <div class="rounded-2xl bg-acid/30 border-2 border-acid text-obsidian p-4 text-xs font-bold flex items-center justify-between">
+            <div class="flex items-center gap-2">
+              <span class="w-2.5 h-2.5 rounded-full bg-obsidian animate-ping"></span>
+              <span>Slot Reservasi Tersedia: <strong class="font-black">{{ product.stock }} Slot Sesi</strong></span>
+            </div>
+            <span class="bg-obsidian text-acid text-[10px] font-black px-2.5 py-0.5 rounded-full">ACTIVE</span>
+          </div>
+        {% else %}
+          <div class="rounded-2xl bg-red-100 border border-red-300 text-red-900 p-4 text-xs font-bold">
+            Saat ini slot pemotretan untuk paket ini sudah penuh terisi.
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Fitur Standar Paket -->
+      <div class="space-y-2 pt-2 border-t border-neutral-100 text-xs text-neutral-600">
+        <p class="font-bold text-obsidian text-[11px] uppercase tracking-wider">Standard Production Workflow:</p>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] font-semibold">
+          <div class="flex items-center gap-2 bg-surface p-2.5 rounded-xl border border-neutral-200">
+            <span class="text-cobalt font-bold">✓</span>
+            <span>Sensor 61MP Sony Alpha</span>
+          </div>
+          <div class="flex items-center gap-2 bg-surface p-2.5 rounded-xl border border-neutral-200">
+            <span class="text-cobalt font-bold">✓</span>
+            <span>16-Bit Color Grading</span>
+          </div>
+          <div class="flex items-center gap-2 bg-surface p-2.5 rounded-xl border border-neutral-200">
+            <span class="text-cobalt font-bold">✓</span>
+            <span>Proofing Portal Digital</span>
+          </div>
+          <div class="flex items-center gap-2 bg-surface p-2.5 rounded-xl border border-neutral-200">
+            <span class="text-cobalt font-bold">✓</span>
+            <span>Draft H+1 & Google Drive</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Call to Action -->
+      <div class="pt-4 border-t border-neutral-200 flex flex-col sm:flex-row items-center gap-3">
+        <a href="https://wa.me/6281234567890?text=Halo%20LYQU%20VISUAL,%20saya%20ingin%20konsultasi%20paket%20{{ product.name|urlencode }}" target="_blank" class="w-full sm:flex-1 py-3.5 rounded-full bg-obsidian text-acid hover:bg-cobalt hover:text-white font-bold text-xs uppercase tracking-wider transition text-center shadow-lg">
+          Konsultasi via WhatsApp →
+        </a>
+        <a href="{{ url_for('show_product', item_id=2 if item_id == 1 else 1) }}" class="w-full sm:w-auto px-5 py-3.5 rounded-full bg-surface border border-neutral-200 text-xs font-bold text-neutral-600 hover:text-obsidian hover:bg-neutral-100 transition text-center">
+          Lihat Paket Lain →
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="max-w-4xl w-full mx-auto text-center text-white/70 text-xs mt-6">
+    <p>© 2026 LYQU VISUAL STUDIO — Studio Fotografi & Visual Kreatif Yogyakarta</p>
+  </footer>
+
+</div>
+{% endblock %}

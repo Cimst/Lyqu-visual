@@ -3,12 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{{ page_title | default('LYQU VISUAL — Studio Fotografi & Visual Kreatif Yogyakarta') }}</title>
+  <title>{% block title %}LYQU VISUAL — Studio Fotografi & Visual Kreatif Yogyakarta{% endblock %}</title>
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/logo/favicon.png') }}" />
 
-  <!-- Google Fonts: Unbounded (Display), Plus Jakarta Sans (UI), JetBrains Mono (EXIF/Tech) -->
+  <!-- Google Fonts: Montserrat (All Weights) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Unbounded:wght@700;800;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,600;1,700&display=swap" rel="stylesheet">
 
   <!-- Tailwind CSS CDN & Config -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -32,7 +33,37 @@
   <div id="shutterFlash"></div>
   <div id="viewfinderCursor" class="hidden lg:flex"></div>
 
-  {% include 'partials/navbar.html' %}
+  {% block site_navigation %}
+    {% include 'partials/navbar.html' %}
+  {% endblock %}
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div id="flashMessagesContainer" class="fixed top-20 inset-x-4 z-[80] mx-auto max-w-xl space-y-2 transition-opacity duration-500 ease-out" role="status" aria-live="polite">
+        {% for category, message in messages %}
+          <div class="flex items-center justify-between rounded-2xl border-2 border-obsidian px-5 py-3.5 text-xs sm:text-sm font-bold shadow-xl backdrop-blur-md
+            {% if category == 'success' %}bg-acid text-obsidian
+            {% elif category == 'info' %}bg-cobalt text-white
+            {% else %}bg-obsidian text-acid border-white/20{% endif %}">
+            <div class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full {% if category == 'success' %}bg-obsidian{% else %}bg-acid{% endif %}"></span>
+              <span>{{ message }}</span>
+            </div>
+            <button type="button" onclick="this.closest('.flex').remove()" class="text-xs font-mono font-bold opacity-70 hover:opacity-100 px-2 py-0.5 rounded transition">Tutup</button>
+          </div>
+        {% endfor %}
+      </div>
+      <script>
+        setTimeout(function() {
+          var flash = document.getElementById('flashMessagesContainer');
+          if (flash) {
+            flash.style.opacity = '0';
+            setTimeout(function() { flash.remove(); }, 500);
+          }
+        }, 4000);
+      </script>
+    {% endif %}
+  {% endwith %}
 
   <!-- =====================================================================
        MAIN WIDESCREEN SLIDE CONTAINER
@@ -41,12 +72,19 @@
     {% block content %}{% endblock %}
   </main>
 
-  {% include 'partials/modals.html' %}
+  {% block site_modals %}
+    {% include 'partials/modals.html' %}
+  {% endblock %}
 
-  <script>
-    window.INITIAL_SLIDE_INDEX = {{ active_slide | default(0) }};
-  </script>
-  <script src="{{ url_for('static', filename='js/data.js') }}"></script>
-  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block page_scripts %}
+    <script>
+      window.INITIAL_SLIDE_INDEX = {{ active_slide | default(0) }};
+      {% if portfolios is defined and portfolios %}
+        window.SERVER_PORTFOLIOS = {{ portfolios | tojson }};
+      {% endif %}
+    </script>
+    <script src="{{ url_for('static', filename='js/data.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% endblock %}
 </body>
 </html>

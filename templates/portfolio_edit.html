@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Karya #{{ item.id }} — LYQU VISUAL STUDIO{% endblock %}
+{% block site_navigation %}{% endblock %}
+{% block site_modals %}{% endblock %}
+{% block page_scripts %}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen hero-blueprint text-obsidian flex flex-col justify-between py-6 px-4 sm:px-6 selection:bg-acid selection:text-obsidian">
+  
+  <!-- FLOATING GLASS TOP NAVBAR -->
+  <header class="max-w-4xl w-full mx-auto mb-6">
+    <nav class="bg-obsidian/90 backdrop-blur-xl border border-white/20 rounded-full px-4 py-2 shadow-xl flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="{{ url_for('dashboard') }}" class="flex items-center gap-2 text-xs font-bold text-white/80 hover:text-white transition">
+          <span class="text-acid">←</span>
+          <span>Kembali ke Dasbor Pengelola</span>
+        </a>
+      </div>
+      <span class="bg-acid text-obsidian text-[10px] font-black px-3 py-0.5 rounded-full shadow-sm">
+        MODE EDIT (UPDATE)
+      </span>
+    </nav>
+  </header>
+
+  <!-- FORM EDIT BENTO CARD -->
+  <main class="max-w-4xl w-full mx-auto my-auto">
+    <div class="bg-white rounded-[32px] p-6 sm:p-8 md:p-10 shadow-2xl border-2 border-white/20">
+      
+      <!-- Header Edit -->
+      <div class="border-b border-neutral-200 pb-5 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="bg-cobalt/10 text-cobalt text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+              EDIT KARYA PORTOFOLIO
+            </span>
+            <span class="font-mono text-xs text-neutral-400">ID: #{{ item.id }}</span>
+          </div>
+          <h1 class="text-2xl sm:text-3xl font-black text-obsidian tracking-tight">
+            {{ item.title }}
+          </h1>
+          <p class="text-xs text-neutral-500 mt-1">Perbarui judul, genre, deskripsi, atau tautan foto proyek ini.</p>
+        </div>
+
+        <!-- Thumbnail Preview -->
+        <div class="w-20 h-16 rounded-2xl overflow-hidden border-2 border-neutral-200 shadow-md shrink-0 bg-neutral-900">
+          <img src="{{ item.image_url }}" alt="{{ item.title }}" class="w-full h-full object-cover" />
+        </div>
+      </div>
+
+      <!-- Form Edit -->
+      <form action="{{ url_for('portfolio_edit', item_id=item.id) }}" method="post" enctype="multipart/form-data" class="space-y-4 text-xs font-semibold">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Judul Karya Portofolio *</label>
+            <input type="text" name="title" value="{{ item.title }}" required class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Kategori Genre *</label>
+            <select name="genre" required class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none bg-white">
+              <option value="Wedding" {% if item.genre == 'Wedding' %}selected{% endif %}>Wedding (Pernikahan & Pre-Wed)</option>
+              <option value="Event" {% if item.genre == 'Event' %}selected{% endif %}>Event (Konser & Acara Pemuda)</option>
+              <option value="Produk" {% if item.genre == 'Produk' %}selected{% endif %}>Produk (Katalog UMKM & Brand)</option>
+              <option value="Portrait" {% if item.genre == 'Portrait' %}selected{% endif %}>Portrait (Wisuda & Editorial)</option>
+              <option value="Lifestyle" {% if item.genre == 'Lifestyle' %}selected{% endif %}>Lifestyle (Kreatif & Urban)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Label Sesi / Waktu *</label>
+            <input type="text" name="pill_tab" value="{{ item.pill_tab }}" required class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Nama Klien</label>
+            <input type="text" name="client_name" value="{{ item.client_name }}" class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Tahun Proyek</label>
+            <input type="text" name="year" value="{{ item.year }}" class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Deskripsi Karya *</label>
+          <textarea name="description" rows="3" required class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none leading-relaxed">{{ item.description }}</textarea>
+        </div>
+
+        <!-- Bagian Foto: Upload Berkas Baru ATAU Tetap Menggunakan URL/Path -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-surface p-4 rounded-2xl border border-neutral-200">
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Upload Foto Baru (Opsional)</label>
+            <input type="file" name="image_file" accept="image/png,image/jpeg,image/webp,image/jpg" class="w-full p-2.5 rounded-xl border border-neutral-300 bg-white font-mono text-[11px] focus:ring-2 focus:ring-cobalt outline-none" />
+            <p class="text-[10px] text-neutral-500 mt-1">Format: JPG, PNG, WEBP (Maksimal 16MB). Mengganti foto saat ini.</p>
+          </div>
+
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Path / URL Foto Saat Ini</label>
+            <input type="text" name="image_url" value="{{ item.image_url }}" required class="w-full p-2.5 rounded-xl border border-neutral-300 font-mono text-[11px] focus:ring-2 focus:ring-cobalt outline-none transition bg-white" />
+            <p class="text-[10px] text-neutral-500 mt-1">Dibiarkan apa adanya jika tidak ingin mengganti file foto.</p>
+          </div>
+        </div>
+
+        <div class="pt-5 border-t border-neutral-200 flex items-center justify-between">
+          <a href="{{ url_for('dashboard') }}" class="px-5 py-2.5 rounded-full bg-surface border border-neutral-300 text-xs font-bold text-neutral-600 hover:text-obsidian hover:bg-neutral-200 transition">
+            ← Batal & Kembali
+          </a>
+          <button type="submit" class="px-7 py-3.5 rounded-full bg-cobalt text-white hover:bg-obsidian hover:text-acid font-bold text-xs uppercase tracking-wider transition active:scale-95 shadow-lg flex items-center gap-2">
+            <span>Simpan Perubahan Karya</span>
+            <span>→</span>
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="max-w-4xl w-full mx-auto text-center text-white/70 text-xs mt-6">
+    <p>© 2026 LYQU VISUAL STUDIO — Studio Fotografi & Visual Kreatif Yogyakarta</p>
+  </footer>
+
+</div>
+{% endblock %}

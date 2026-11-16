@@ -44,34 +44,62 @@ const slideTitles = [
 
     function renderBentoGallery(genre) {
       const container = document.getElementById('galleryGrid');
-      const items = genre === 'all' ? bentoPortfolioData : bentoPortfolioData.filter(x => Array.isArray(x.genre) ? x.genre.includes(genre) : x.genre === genre);
+      const dataSource = (window.SERVER_PORTFOLIOS && window.SERVER_PORTFOLIOS.length > 0)
+        ? window.SERVER_PORTFOLIOS
+        : bentoPortfolioData;
 
-      container.innerHTML = items.map(item => `
-        <div class="gallery-card w-[85vw] max-w-[340px] md:w-auto md:max-w-none shrink-0 snap-center ${item.cardStyle} ${item.imageOverlap ? 'gallery-card--image-overlap' : ''} rounded-[24px] p-4 sm:p-5 relative flex flex-col justify-between shadow-lg mt-2 hover:-translate-y-1 transition">
-          <span class="${item.tabStyle} font-hero font-bold text-[9px] sm:text-[10px] px-3 sm:px-3.5 py-1 rounded-full absolute -top-3 right-4 sm:right-5 rotate-2 sm:rotate-3 shadow z-20">
-            ${item.pillTab}
-          </span>
+      const items = genre === 'all'
+        ? dataSource
+        : dataSource.filter(x => {
+            const g = Array.isArray(x.genre) ? x.genre : [x.genre];
+            return g.some(itemGenre => String(itemGenre).toLowerCase().includes(genre.toLowerCase()));
+          });
 
-          <div class="flex flex-col sm:grid sm:grid-cols-12 gap-3 sm:gap-4 items-stretch sm:items-center">
-            <div class="order-1 sm:order-2 sm:col-span-5 rounded-xl ${item.imageOverlap ? 'portfolio-image-stage--overlap' : 'overflow-hidden'}">
-              <img src="${item.img}" alt="${item.title}" style="object-position: ${item.imgPosition || 'center'};" class="w-full h-36 sm:h-28 object-cover hover:scale-110 transition duration-500" />
+      if (!items || items.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-2 py-12 text-center text-neutral-400 text-xs">
+            Tidak ada karya untuk kategori ini. Tambahkan melalui <a href="/dashboard" class="text-acid underline font-bold">Dasbor Pengelola</a>.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = items.map(item => {
+        const pillTab = item.pillTab || item.pill_tab || 'STUDIO • 2026';
+        const cardStyle = item.cardStyle || item.card_style || 'bg-white text-obsidian border-2 border-obsidian/10 shadow-lg';
+        const tabStyle = item.tabStyle || item.tab_style || 'bg-cobalt text-white';
+        const btnStyle = item.btnStyle || item.btn_style || 'bg-cobalt text-white hover:bg-obsidian hover:text-acid';
+        const img = item.img || item.image_url || '/static/images/portfolio/wedding-intimate-merapi.jpg';
+        const desc = item.desc || item.description || '';
+        const genreText = Array.isArray(item.genre) ? item.genre.join(' & ') : item.genre;
+
+        return `
+          <div class="gallery-card w-[85vw] max-w-[340px] md:w-auto md:max-w-none shrink-0 snap-center ${cardStyle} rounded-[24px] p-4 sm:p-5 relative flex flex-col justify-between shadow-xl mt-2 hover:-translate-y-1 transition duration-300">
+            <span class="${tabStyle} font-bold text-[9px] sm:text-[10px] px-3.5 py-1 rounded-full absolute -top-3 right-4 sm:right-5 rotate-2 sm:rotate-3 shadow-md z-20">
+              ${pillTab}
+            </span>
+
+            <div class="flex flex-col sm:grid sm:grid-cols-12 gap-3 sm:gap-4 items-stretch sm:items-center">
+              <div class="order-1 sm:order-2 sm:col-span-5 rounded-xl overflow-hidden aspect-[4/3] bg-neutral-900 border border-black/10">
+                <img src="${img}" alt="${item.title}" style="object-position: ${item.imgPosition || 'center'};" class="w-full h-full object-cover hover:scale-105 transition duration-500" />
+              </div>
+              <div class="order-2 sm:order-1 sm:col-span-7 space-y-1 sm:space-y-1.5 relative z-10">
+                <span class="text-[10px] font-bold uppercase opacity-75 block tracking-wider">GENRE: ${genreText}</span>
+                <h3 class="font-extrabold text-sm sm:text-base leading-snug">${item.title}</h3>
+                <p class="text-[11px] opacity-85 leading-relaxed">${desc}</p>
+              </div>
             </div>
-            <div class="order-2 sm:order-1 sm:col-span-7 space-y-1 sm:space-y-1.5 relative z-10">
-              <span class="font-mono text-[10px] uppercase opacity-75">GENRE: ${Array.isArray(item.genre) ? item.genre.join(' & ') : item.genre}</span>
-              <h3 class="font-hero font-extrabold text-sm sm:text-base leading-snug">${item.title}</h3>
-              <p class="text-[11px] opacity-85 leading-relaxed">${item.desc}</p>
+
+            <div class="mt-3.5 pt-2.5 border-t border-current/20 flex items-center justify-between">
+              <a href="#slide-4" class="${btnStyle} px-3.5 py-1.5 rounded-full font-bold text-[10px] uppercase inline-flex items-center gap-1.5 shadow-sm transition">
+                <span>Booking Sesi Ini</span>
+                <span>→</span>
+              </a>
+              <span class="text-[10px] opacity-75 font-semibold">WebP • 16-Bit RAW</span>
             </div>
           </div>
-
-          <div class="mt-3 pt-2.5 border-t border-current/10 flex items-center justify-between">
-            <a href="#slide-4" class="${item.btnStyle} px-3.5 py-1.5 rounded-full font-hero font-bold text-[10px] uppercase inline-flex items-center gap-1.5 shadow-sm">
-              <span>Booking Genre Ini</span>
-              <span>→</span>
-            </a>
-            <span class="font-mono text-[10px] opacity-70">WebP &lt; 240KB</span>
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
 
       gsap.fromTo(".gallery-card",
         { y: 30, opacity: 0, scale: 0.95 },
@@ -81,9 +109,9 @@ const slideTitles = [
 
     function filterGallery(genre, btnEl) {
       document.querySelectorAll('#portfolioFilters button').forEach(b => {
-        b.className = 'shrink-0 px-4 py-1.5 rounded-full text-[11px] font-hero font-bold bg-white/10 text-white hover:bg-cobalt transition';
+        b.className = 'shrink-0 px-4 py-2 rounded-full text-xs font-semibold bg-white/10 text-white hover:bg-white/20 transition';
       });
-      btnEl.className = 'shrink-0 px-4 py-1.5 rounded-full text-[11px] font-hero font-bold bg-acid text-obsidian transition';
+      btnEl.className = 'shrink-0 px-4 py-2 rounded-full text-xs font-bold bg-acid text-obsidian shadow-sm transition';
       renderBentoGallery(genre);
     }
 
@@ -154,16 +182,16 @@ let filterSelectedActive = false;
       const list = filterSelectedActive ? rawPhotos.filter(p => p.selected) : rawPhotos;
 
       grid.innerHTML = list.map(p => `
-        <button type="button" onclick="toggleProofSelection('${p.id}')" aria-pressed="${p.selected}" aria-label="${p.selected ? 'Batalkan pilihan' : 'Pilih'} foto ${p.id}" class="proofing-photo-card shrink-0 cursor-pointer text-left rounded-xl overflow-hidden bg-white shadow-sm border-2 transition hover:-translate-y-0.5 snap-start ${p.selected ? 'border-cobalt' : 'border-transparent'}">
+        <button type="button" onclick="toggleProofSelection('${p.id}')" aria-pressed="${p.selected}" aria-label="${p.selected ? 'Batalkan pilihan' : 'Pilih'} foto ${p.id}" class="proofing-photo-card shrink-0 cursor-pointer text-left rounded-xl overflow-hidden bg-white shadow-sm border-2 transition hover:-translate-y-0.5 snap-start ${p.selected ? 'border-cobalt' : 'border-neutral-200'}">
           <div class="relative">
             <img src="${p.img}" alt="${p.id}" loading="lazy" class="w-full h-32 sm:h-36 object-cover transition duration-300 ${p.selected ? '' : 'grayscale contrast-125'}" />
-            <span class="absolute top-1.5 right-1.5 px-2 py-0.5 rounded-full font-mono text-[9px] font-bold ${p.selected ? 'bg-acid text-obsidian' : 'bg-obsidian/75 text-white'}">
-              ${p.selected ? 'TERPILIH' : 'PILIH'}
+            <span class="absolute top-2 right-2 px-2.5 py-0.5 rounded-full text-[10px] font-bold ${p.selected ? 'bg-acid text-obsidian shadow' : 'bg-obsidian/75 text-white'}">
+              ${p.selected ? '✓ TERPILIH' : 'PILIH'}
             </span>
           </div>
-          <div class="px-2.5 py-1.5 flex items-center justify-between font-mono text-[10px]">
-            <span class="font-bold truncate max-w-[115px]">${p.id}</span>
-            <span class="${p.selected ? 'text-cobalt font-bold' : 'text-neutral-400'}">${p.selected ? 'ANTREAN EDIT' : 'RAW'}</span>
+          <div class="px-3 py-2 flex items-center justify-between text-xs">
+            <span class="font-bold truncate max-w-[115px] text-obsidian">${p.id}</span>
+            <span class="${p.selected ? 'text-cobalt font-bold' : 'text-neutral-400 font-medium'}">${p.selected ? 'Antrean Edit' : 'RAW'}</span>
           </div>
         </button>
       `).join('');
@@ -264,9 +292,12 @@ let filterSelectedActive = false;
 
       const author = loggedUser ? loggedUser.name.split(' ')[0] : 'Klien Jogja';
       const html = `
-        <div class="w-[82vw] max-w-[310px] md:w-auto md:max-w-none shrink-0 snap-center bg-acid/40 px-4 py-2.5 rounded-xl border-l-4 border-obsidian flex items-center justify-between">
-          <p class="text-[11px] text-obsidian truncate">"${text}" — <strong>${author}</strong></p>
-          <span class="text-cobalt text-xs font-bold ml-2">${ratingScore}/5</span>
+        <div class="bg-surface p-4 rounded-xl border border-neutral-200 flex items-center justify-between">
+          <div>
+            <p class="text-xs text-obsidian italic font-medium">"${text}"</p>
+            <span class="text-[11px] font-bold text-neutral-600 block mt-1">— ${author}</span>
+          </div>
+          <span class="bg-cobalt/10 text-cobalt text-xs font-bold px-2.5 py-1 rounded-full shrink-0 ml-2">${ratingScore}/5 ★</span>
         </div>
       `;
       const container = document.getElementById('testimonialList');
@@ -281,6 +312,47 @@ let filterSelectedActive = false;
       renderMiniCalendar();
       renderProofingCards();
       recalculateDp();
+
+      const bookingForm = document.getElementById('bookingInquiryForm');
+      if (bookingForm) {
+        bookingForm.addEventListener('submit', async (event) => {
+          event.preventDefault();
+
+          const submitButton = bookingForm.querySelector('button[type="submit"]');
+          const status = document.getElementById('bookingInquiryStatus');
+          const formData = new FormData(bookingForm);
+          const payload = {
+            name: formData.get('name'),
+            email: formData.get('email'),
+            phone: formData.get('phone'),
+            package: document.getElementById('calcPackage').value,
+            location: document.getElementById('calcLocation').value,
+            date: selectedDay
+          };
+
+          submitButton.disabled = true;
+          status.textContent = 'Memeriksa data formulir...';
+
+          try {
+            const response = await fetch(bookingForm.action, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify(payload)
+            });
+            const result = await response.json();
+
+            status.textContent = result.message || 'Tidak dapat memeriksa formulir.';
+            status.classList.toggle('text-red-700', !response.ok);
+            status.classList.toggle('text-neutral-700', response.ok);
+          } catch (error) {
+            status.textContent = 'Gagal menghubungi server. Periksa koneksi lalu coba lagi.';
+            status.classList.add('text-red-700');
+            status.classList.remove('text-neutral-700');
+          } finally {
+            submitButton.disabled = false;
+          }
+        });
+      }
 
       // Matikan VanillaTilt pada perangkat layar sentuh murni agar tap kartu lebih responsif
       if (window.matchMedia && window.matchMedia('(hover: none)').matches) {

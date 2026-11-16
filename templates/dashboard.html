@@ -1,0 +1,701 @@
+{% extends 'base.html' %}
+
+{% block title %}Dasbor Pengelola Studio — LYQU VISUAL{% endblock %}
+{% block site_navigation %}{% endblock %}
+{% block site_modals %}{% endblock %}
+{% block page_scripts %}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen hero-blueprint text-obsidian flex flex-col relative pb-16 selection:bg-acid selection:text-obsidian">
+  
+  <!-- FLOATING GLASS TOP NAVBAR (IDENTIK DENGAN NAVBAR BERANDA) -->
+  <header class="sticky top-3 sm:top-4 z-50 px-3 sm:px-6 mb-4 sm:mb-6">
+    <nav class="max-w-6xl mx-auto bg-obsidian/90 backdrop-blur-xl border border-white/20 rounded-full px-3.5 sm:px-5 py-2 shadow-[0_12px_36px_rgba(0,0,0,0.45)] flex items-center justify-between">
+      
+      <!-- Brand Logo & Studio OS Tag -->
+      <div class="flex items-center gap-2.5 sm:gap-3 shrink-0">
+        <a href="{{ url_for('beranda') }}" class="flex items-center gap-2.5 group">
+          <img src="{{ url_for('static', filename='images/logo/logo-mark-acid.png') }}" alt="LYQU Logo" class="w-6 h-6 sm:w-7 sm:h-7 object-contain drop-shadow shrink-0 group-hover:scale-105 transition" />
+          <span class="font-black text-xs sm:text-sm tracking-tight text-white group-hover:text-acid transition whitespace-nowrap">LYQU VISUAL</span>
+        </a>
+        <span class="w-1.5 h-1.5 rounded-full bg-white/30 hidden sm:inline"></span>
+        <span class="bg-acid text-obsidian text-[10px] font-black px-2.5 py-0.5 rounded-full hidden sm:inline-block shadow-sm">
+          STUDIO OS
+        </span>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="{{ url_for('beranda') }}" target="_blank" class="px-3 sm:px-4 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-[11px] sm:text-xs font-semibold border border-white/15 transition flex items-center gap-1.5 shadow-sm whitespace-nowrap">
+          <span>Lihat Web Publik</span>
+          <span class="text-acid">↗</span>
+        </a>
+        <a href="{{ url_for('logout') }}" class="px-3 sm:px-3.5 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white text-[11px] sm:text-xs font-bold border border-white/15 transition shadow-sm whitespace-nowrap">
+          Keluar
+        </a>
+      </div>
+
+    </nav>
+  </header>
+
+  <!-- MAIN DASHBOARD CONTAINER -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 space-y-6 sm:space-y-7">
+    
+    <!-- ===================================================================
+         HERO STAGE: STICKER PILLS, TITLE & 3 METRIC BENTO CARDS
+         =================================================================== -->
+    <section class="relative z-10">
+      
+      <!-- Sticker Pills (Identik dengan Beranda) -->
+      <div class="flex items-center gap-2 sm:gap-2.5 mb-2">
+        <span class="bg-acid text-obsidian font-black text-[10px] sm:text-[11px] px-3.5 py-1 rounded-full -rotate-3 shadow-md">
+          STUDIO DIRECTOR OS
+        </span>
+        <span class="bg-obsidian text-acid font-bold text-[10px] sm:text-[11px] px-3.5 py-1 rounded-full rotate-2 shadow-md border border-white/15">
+          SQLITE REAL-TIME ENGINE
+        </span>
+      </div>
+
+      <!-- Title & Subtitle -->
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-3">
+        <div>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-none drop-shadow-md">
+            DASBOR PENGELOLA
+          </h1>
+          <p class="text-white/90 text-xs sm:text-sm font-semibold max-w-2xl mt-1.5 drop-shadow">
+            Kelola katalog karya portofolio, keahlian gear kamera, dan profil CV studio secara real-time.
+          </p>
+        </div>
+
+        <div class="inline-flex items-center gap-2 bg-obsidian/85 backdrop-blur-md border border-white/20 text-white px-3.5 py-1.5 rounded-full text-xs font-bold self-start sm:self-auto shadow-lg shrink-0">
+          <span class="w-2 h-2 rounded-full bg-acid animate-ping"></span>
+          <span>Database SQLite: Aktif</span>
+        </div>
+      </div>
+
+      <!-- 4 Bento Metrics Cards (Seimbang, Simetris, & Rapi) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-4 mt-5">
+        
+        <!-- Metric 1: Karya Portofolio (Acid Lime) -->
+        <div class="bg-acid text-obsidian rounded-[24px] p-4 sm:p-5 shadow-xl border-2 border-obsidian/10 flex items-center justify-between hover:-translate-y-1 transition duration-300">
+          <div>
+            <span class="text-[10px] font-black uppercase tracking-wider text-obsidian/75 block">KARYA PORTOFOLIO</span>
+            <span class="font-black text-2xl sm:text-3xl leading-none mt-1 block">{{ stats.total_portfolios }} Proyek</span>
+            <span class="text-[11px] font-bold text-obsidian/85 mt-1 block">Tampil Live di Web</span>
+          </div>
+          <span class="w-11 h-11 rounded-2xl bg-obsidian text-acid font-black text-base flex items-center justify-center shrink-0 shadow-md">
+            01
+          </span>
+        </div>
+
+        <!-- Metric 2: Reservasi Masuk (Obsidian Dark with Acid Accent) -->
+        <div class="bg-obsidian text-white rounded-[24px] p-4 sm:p-5 shadow-xl border-2 border-white/15 flex items-center justify-between hover:-translate-y-1 transition duration-300">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-acid block">RESERVASI MASUK</span>
+            <span class="font-black text-2xl sm:text-3xl leading-none text-acid mt-1 block">{{ bookings|length }} Klien</span>
+            <span class="text-[11px] font-medium text-white/80 mt-1 block">Tersimpan di SQLite</span>
+          </div>
+          <span class="w-11 h-11 rounded-2xl bg-acid text-obsidian font-black text-base flex items-center justify-center shrink-0 shadow-md">
+            02
+          </span>
+        </div>
+
+        <!-- Metric 3: Gear & Keahlian (Cobalt Vibrant) -->
+        <div class="bg-cobalt text-white rounded-[24px] p-4 sm:p-5 shadow-xl border-2 border-white/15 flex items-center justify-between hover:-translate-y-1 transition duration-300">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-white/80 block">GEAR & KEAHLIAN</span>
+            <span class="font-black text-2xl sm:text-3xl leading-none text-white mt-1 block">{{ stats.total_skills }} Item</span>
+            <span class="text-[11px] font-medium text-white/90 mt-1 block">Sony Alpha & Grading</span>
+          </div>
+          <span class="w-11 h-11 rounded-2xl bg-white text-cobalt font-black text-base flex items-center justify-center shrink-0 shadow-md">
+            03
+          </span>
+        </div>
+
+        <!-- Metric 4: Proyek Selesai (Crisp White with Obsidian Accent) -->
+        <div class="bg-white text-obsidian rounded-[24px] p-4 sm:p-5 shadow-xl border border-neutral-200 flex items-center justify-between hover:-translate-y-1 transition duration-300">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-neutral-500 block">JAM TERBANG STUDIO</span>
+            <span class="font-black text-2xl sm:text-3xl leading-none text-obsidian mt-1 block">20+ Proyek</span>
+            <span class="text-[11px] font-semibold text-neutral-600 mt-1 block">Selesai Dikerjakan</span>
+          </div>
+          <span class="w-11 h-11 rounded-2xl bg-obsidian text-white font-black text-base flex items-center justify-center shrink-0 shadow-md">
+            04
+          </span>
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ===================================================================
+         CLEAN DASHBOARD NAVIGATION TABS (TATA LETAK RAPI & TERORGANISIR)
+         =================================================================== -->
+    <div class="bg-obsidian/90 backdrop-blur-xl border border-white/20 p-1.5 rounded-2xl shadow-xl flex items-center gap-1.5 overflow-x-auto no-scrollbar">
+      
+      <button onclick="switchTab('tab-portfolios')" id="btn-tab-portfolios" class="tab-btn px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 transition whitespace-nowrap bg-acid text-obsidian shadow-sm">
+        <span>Katalog Portofolio</span>
+        <span class="bg-obsidian text-acid px-2 py-0.5 rounded-full text-[10px] font-mono font-bold">{{ portfolios|length }}</span>
+      </button>
+
+      <button onclick="switchTab('tab-bookings')" id="btn-tab-bookings" class="tab-btn px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 transition whitespace-nowrap text-white/80 hover:text-white hover:bg-white/10">
+        <span>Pesanan Masuk</span>
+        <span class="bg-acid text-obsidian px-2 py-0.5 rounded-full text-[10px] font-mono font-black">{{ bookings|length }}</span>
+      </button>
+
+      <button onclick="switchTab('tab-create')" id="btn-tab-create" class="tab-btn px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 transition whitespace-nowrap text-white/80 hover:text-white hover:bg-white/10">
+        <span>+ Tambah Karya</span>
+      </button>
+
+      <button onclick="switchTab('tab-skills')" id="btn-tab-skills" class="tab-btn px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 transition whitespace-nowrap text-white/80 hover:text-white hover:bg-white/10">
+        <span>Gear Kamera & Skills</span>
+        <span class="bg-white/10 text-white px-2 py-0.5 rounded-full text-[10px] font-mono font-bold">{{ skills|length }}</span>
+      </button>
+
+      <button onclick="switchTab('tab-profile')" id="btn-tab-profile" class="tab-btn px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 transition whitespace-nowrap text-white/80 hover:text-white hover:bg-white/10">
+        <span>Profil Studio & CV</span>
+      </button>
+
+    </div>
+
+    <!-- ===================================================================
+         TAB 1: KATALOG PORTOFOLIO (FULL-WIDTH CLEAN TABLE & ACTION BAR)
+         =================================================================== -->
+    <section id="tab-portfolios" class="tab-content bg-white rounded-[28px] p-5 sm:p-7 shadow-2xl border border-white/20 space-y-5">
+      
+      <!-- Top Action Bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-neutral-200">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-cobalt animate-ping"></span>
+            <span class="text-[10px] font-bold text-cobalt uppercase tracking-wider">DATABASE PORTOFOLIO LIVE</span>
+          </div>
+          <h2 class="text-xl font-black text-obsidian mt-0.5">Daftar Karya yang Sedang Tayang di Web</h2>
+        </div>
+
+        <button onclick="switchTab('tab-create')" class="px-4 py-2.5 rounded-xl bg-obsidian text-acid hover:bg-cobalt hover:text-white font-bold text-xs uppercase tracking-wider transition shadow-md flex items-center gap-1.5 self-start sm:self-auto active:scale-95">
+          <span>+ Tambah Karya Portofolio</span>
+        </button>
+      </div>
+
+      <!-- Tabel Bersih & Rapi -->
+      <div class="overflow-x-auto rounded-2xl border border-neutral-200">
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="bg-surface border-b border-neutral-200 text-[11px] font-bold text-neutral-600 uppercase tracking-wider">
+              <th class="py-3 px-4 sm:px-5">Preview Foto</th>
+              <th class="py-3 px-4">Judul & Konsep Karya</th>
+              <th class="py-3 px-4">Kategori Genre</th>
+              <th class="py-3 px-4">Label Sesi</th>
+              <th class="py-3 px-4">Klien & Tahun</th>
+              <th class="py-3 px-4 sm:px-5 text-right">Aksi</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-neutral-100 text-xs font-semibold">
+            {% for item in portfolios %}
+            <tr class="hover:bg-neutral-50/80 transition">
+              
+              <!-- Thumbnail -->
+              <td class="py-3 px-4 sm:px-5 w-20">
+                <div class="w-16 h-12 rounded-xl overflow-hidden bg-neutral-900 border border-neutral-200 shadow-sm shrink-0">
+                  <img src="{{ item.image_url }}" alt="{{ item.title }}" class="w-full h-full object-cover" />
+                </div>
+              </td>
+
+              <!-- Title & Desc -->
+              <td class="py-3 px-4 max-w-xs">
+                <p class="font-extrabold text-obsidian text-xs sm:text-sm truncate">{{ item.title }}</p>
+                <p class="text-[11px] text-neutral-500 line-clamp-1 mt-0.5 font-normal">{{ item.description }}</p>
+              </td>
+
+              <!-- Genre Pill -->
+              <td class="py-3 px-4 whitespace-nowrap">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold 
+                  {% if item.genre == 'Wedding' %}bg-cobalt text-white
+                  {% elif item.genre == 'Event' %}bg-obsidian text-acid
+                  {% elif item.genre == 'Produk' %}bg-acid text-obsidian
+                  {% else %}bg-surface text-obsidian border border-neutral-300{% endif %}">
+                  {{ item.genre }}
+                </span>
+              </td>
+
+              <!-- Sesi Label -->
+              <td class="py-3 px-4 whitespace-nowrap font-mono text-[11px] text-neutral-700">
+                {{ item.pill_tab }}
+              </td>
+
+              <!-- Klien & Tahun -->
+              <td class="py-3 px-4 whitespace-nowrap text-[11px] text-neutral-600">
+                {{ item.client_name }} ({{ item.year }})
+              </td>
+
+              <!-- Actions -->
+              <td class="py-3 px-4 sm:px-5 text-right whitespace-nowrap">
+                <div class="flex items-center justify-end gap-2">
+                  <a href="{{ url_for('portfolio_edit', item_id=item.id) }}" class="px-3 py-1.5 rounded-lg bg-surface border border-neutral-300 text-neutral-700 hover:text-white hover:bg-cobalt hover:border-cobalt text-xs font-bold transition shadow-sm">
+                    Edit
+                  </a>
+                  <form action="{{ url_for('portfolio_delete', item_id=item.id) }}" method="post" onsubmit="return confirm('Apakah Anda yakin ingin menghapus karya \'{{ item.title }}\'?');" class="inline">
+                    <button type="submit" class="px-3 py-1.5 rounded-lg bg-surface border border-neutral-300 text-neutral-600 hover:bg-obsidian hover:text-white hover:border-obsidian text-xs font-bold transition shadow-sm">
+                      Hapus
+                    </button>
+                  </form>
+                </div>
+              </td>
+
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="6" class="py-10 text-center text-neutral-400 text-xs">
+                Belum ada karya portofolio. Klik tombol "+ Tambah Karya Portofolio" untuk membuat karya baru.
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="pt-2 text-[11px] text-neutral-500 flex items-center justify-between">
+        <span>Semua data portofolio tersinkronisasi otomatis dengan Slide 02 Koleksi Karya.</span>
+        <a href="{{ url_for('portofolio') }}" target="_blank" class="text-cobalt font-bold hover:underline">Buka Showcase Publik →</a>
+      </div>
+
+    </section>
+
+    <!-- ===================================================================
+         TAB 1.5: DAFTAR PESANAN & RESERVASI MASUK (SQLITE REAL-TIME)
+         =================================================================== -->
+    <section id="tab-bookings" class="tab-content hidden bg-white rounded-[28px] p-5 sm:p-7 shadow-2xl border border-white/20 space-y-5">
+      
+      <!-- Top Action Bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-4 border-b border-neutral-200">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="bg-cobalt/10 text-cobalt text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+              INQUIRY & RESERVASI KLIEN
+            </span>
+            <span class="bg-neutral-100 text-neutral-700 text-xs font-bold px-2.5 py-0.5 rounded-full">
+              {{ bookings|length }} Pesanan Masuk
+            </span>
+          </div>
+          <h2 class="text-xl font-black text-obsidian mt-1">Daftar Reservasi & Konsultasi Sesi Masuk</h2>
+          <p class="text-xs text-neutral-500 mt-0.5">Semua formulir pemesanan dari Slide 04 tersimpan otomatis di tabel SQLite `bookings`.</p>
+        </div>
+
+        <div class="flex items-center gap-2 self-start sm:self-auto">
+          <a href="{{ url_for('paket_booking') }}" target="_blank" class="px-4 py-2 rounded-full bg-surface border border-neutral-300 text-xs font-bold text-neutral-700 hover:text-white hover:bg-cobalt hover:border-cobalt transition shadow-sm">
+            Buka Form Pemesanan Publik ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- Tabel Reservasi -->
+      <div class="overflow-x-auto rounded-2xl border border-neutral-200 shadow-sm">
+        <table class="w-full text-left border-collapse text-xs">
+          <thead>
+            <tr class="bg-neutral-50 text-neutral-500 font-bold uppercase text-[10px] tracking-wider border-b border-neutral-200">
+              <th class="py-3 px-4">#ID & Waktu</th>
+              <th class="py-3 px-4">Klien & Kontak</th>
+              <th class="py-3 px-4">Paket & Lokasi</th>
+              <th class="py-3 px-4">Jadwal Sesi</th>
+              <th class="py-3 px-4">Biaya & DP 30%</th>
+              <th class="py-3 px-4 text-center">Status</th>
+              <th class="py-3 px-4 text-right">Tindakan</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-neutral-200 font-semibold">
+            {% for b in bookings %}
+            <tr class="hover:bg-neutral-50/80 transition">
+              
+              <!-- ID & Waktu -->
+              <td class="py-3.5 px-4">
+                <span class="font-mono font-bold text-neutral-400">#BK-{{ b.id }}</span>
+                <p class="text-[10px] text-neutral-400 mt-0.5">{{ b.created_at }}</p>
+              </td>
+
+              <!-- Klien & Kontak -->
+              <td class="py-3.5 px-4">
+                <div class="font-black text-obsidian text-sm">{{ b.client_name }}</div>
+                <div class="text-[11px] text-neutral-500 mt-0.5">{{ b.email }}</div>
+                <div class="mt-1">
+                  <a href="https://wa.me/{{ b.phone|replace('+', '')|replace(' ', '')|replace('-', '') }}" target="_blank" class="inline-flex items-center gap-1 text-[10px] font-bold text-obsidian bg-acid hover:bg-cobalt hover:text-white px-2.5 py-0.5 rounded-full transition shadow-sm">
+                    <span>WhatsApp ({{ b.phone }})</span>
+                    <span class="text-[9px]">↗</span>
+                  </a>
+                </div>
+              </td>
+
+              <!-- Paket & Lokasi -->
+              <td class="py-3.5 px-4">
+                <span class="inline-block bg-cobalt/10 text-cobalt px-2.5 py-0.5 rounded-md font-bold text-xs">
+                  {{ b.package_name }}
+                </span>
+                <p class="text-[11px] text-neutral-600 mt-1">
+                  {{ b.location_zone }}
+                  {% if b.location_fee > 0 %}
+                    <span class="text-neutral-400 font-normal">(+Rp {{ "{:,}".format(b.location_fee).replace(",", ".") }})</span>
+                  {% endif %}
+                </p>
+              </td>
+
+              <!-- Jadwal Sesi -->
+              <td class="py-3.5 px-4">
+                <span class="inline-block bg-neutral-100 text-neutral-800 px-2.5 py-1 rounded-lg font-mono font-bold text-xs">
+                  {{ b.booking_date }}
+                </span>
+              </td>
+
+              <!-- Biaya & DP -->
+              <td class="py-3.5 px-4">
+                <div class="font-extrabold text-obsidian text-xs">
+                  Total: Rp {{ "{:,}".format(b.total_amount).replace(",", ".") }}
+                </div>
+                <div class="text-[11px] font-bold text-cobalt mt-0.5">
+                  DP 30%: Rp {{ "{:,}".format(b.dp_amount).replace(",", ".") }}
+                </div>
+              </td>
+
+              <!-- Status -->
+              <td class="py-3.5 px-4 text-center">
+                {% if b.status == 'Dikonfirmasi' %}
+                  <span class="inline-block bg-acid text-obsidian border border-obsidian/20 px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider">
+                    Dikonfirmasi
+                  </span>
+                {% else %}
+                  <span class="inline-block bg-surface text-neutral-600 border border-neutral-300 px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider">
+                    Menunggu
+                  </span>
+                {% endif %}
+              </td>
+
+              <!-- Tindakan -->
+              <td class="py-3.5 px-4 text-right">
+                <div class="flex items-center justify-end gap-1.5">
+                  <form action="{{ url_for('booking_status', booking_id=b.id) }}" method="post" class="inline">
+                    <input type="hidden" name="status" value="{% if b.status == 'Dikonfirmasi' %}Menunggu Konfirmasi{% else %}Dikonfirmasi{% endif %}">
+                    <button type="submit" class="px-2.5 py-1.5 rounded-lg border text-[11px] font-bold transition shadow-sm {% if b.status == 'Dikonfirmasi' %}border-neutral-300 text-neutral-600 hover:bg-neutral-100{% else %}bg-obsidian text-acid hover:bg-cobalt hover:text-white{% endif %}">
+                      {% if b.status == 'Dikonfirmasi' %}Batal Konfirmasi{% else %}Konfirmasi{% endif %}
+                    </button>
+                  </form>
+
+                  <form action="{{ url_for('booking_delete', booking_id=b.id) }}" method="post" class="inline" onsubmit="return confirm('Hapus catatan pesanan dari {{ b.client_name }}?');">
+                    <button type="submit" class="px-2.5 py-1.5 rounded-lg border border-neutral-300 text-neutral-600 hover:bg-obsidian hover:text-white hover:border-obsidian text-[11px] font-bold transition shadow-sm">
+                      Hapus
+                    </button>
+                  </form>
+                </div>
+              </td>
+
+            </tr>
+            {% else %}
+            <tr>
+              <td colspan="7" class="py-10 text-center text-neutral-400 text-xs">
+                Belum ada reservasi masuk. Formulir booking publik pada Slide 04 akan otomatis masuk ke tabel ini.
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+    </section>
+
+    <!-- ===================================================================
+         TAB 2: FORM TAMBAH KARYA BARU (BALANCED 2-COLUMN FORM)
+         =================================================================== -->
+    <section id="tab-create" class="tab-content hidden bg-white rounded-[28px] p-6 sm:p-8 shadow-2xl border border-white/20 space-y-6">
+      
+      <div class="border-b border-neutral-200 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <span class="bg-cobalt/10 text-cobalt text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+            + INPUT DATA BARU
+          </span>
+          <h2 class="text-xl font-black text-obsidian mt-1.5">Form Tambah Karya Portofolio Baru</h2>
+          <p class="text-xs text-neutral-500 mt-0.5">Isi detail karya atau upload file foto untuk langsung menerbitkannya ke database SQLite.</p>
+        </div>
+
+        <button onclick="switchTab('tab-portfolios')" class="text-xs font-bold text-neutral-500 hover:text-obsidian self-start sm:self-auto">
+          ← Kembali ke Tabel Portofolio
+        </button>
+      </div>
+
+      <form action="{{ url_for('portfolio_create') }}" method="post" enctype="multipart/form-data" class="space-y-5 text-xs font-semibold">
+        
+        <!-- Baris 1: Judul & Genre -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Judul Karya Portofolio *</label>
+            <input type="text" name="title" required placeholder="Contoh: Editorial Pre-Wedding Kaliurang" class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Kategori Genre *</label>
+            <select name="genre" required class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none bg-white">
+              <option value="Wedding">Wedding (Pernikahan & Pre-Wed)</option>
+              <option value="Event">Event (Konser & Acara Pemuda)</option>
+              <option value="Produk">Produk (Katalog UMKM & Brand)</option>
+              <option value="Portrait">Portrait (Wisuda & Editorial)</option>
+              <option value="Lifestyle">Lifestyle (Kreatif & Urban)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Baris 2: Label Sesi, Klien, Tahun -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Label Sesi / Waktu *</label>
+            <input type="text" name="pill_tab" value="FULL DAY • 8 JAM" required class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Nama Klien</label>
+            <input type="text" name="client_name" placeholder="Contoh: Bagus & Annisa" class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Tahun Proyek</label>
+            <input type="text" name="year" value="2026" class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+        </div>
+
+        <!-- Baris 3: Deskripsi -->
+        <div>
+          <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Deskripsi Karya *</label>
+          <textarea name="description" rows="3" required placeholder="Jelaskan konsep pemotretan, lokasi, dan tone warna 16-bit..." class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none leading-relaxed transition"></textarea>
+        </div>
+
+        <!-- Baris 4: Upload Foto Berkas ATAU Path/URL -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-surface p-4 rounded-2xl border border-neutral-200">
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Upload Berkas Foto Langsung</label>
+            <input type="file" name="image_file" accept="image/png,image/jpeg,image/webp,image/jpg" class="w-full p-2.5 rounded-xl border border-neutral-300 bg-white font-mono text-[11px] focus:ring-2 focus:ring-cobalt outline-none" />
+            <p class="text-[10px] text-neutral-500 mt-1">Upload langsung file JPG/PNG dari komputer (Otomatis disimpan di server).</p>
+          </div>
+
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Atau Gunakan Path / Preset Foto</label>
+            <input type="text" name="image_url" value="/static/images/portfolio/wedding-intimate-merapi.jpg" class="w-full p-2.5 rounded-xl border border-neutral-300 font-mono text-[11px] focus:ring-2 focus:ring-cobalt outline-none transition bg-white" />
+            
+            <div class="flex items-center gap-1.5 mt-2 flex-wrap">
+              <span class="text-[10px] text-neutral-500">Preset:</span>
+              <button type="button" onclick="this.form.image_url.value='/static/images/portfolio/wedding-intimate-merapi.jpg'" class="text-[10px] bg-white hover:bg-cobalt hover:text-white px-2 py-0.5 rounded border border-neutral-200 transition font-mono">Wedding</button>
+              <button type="button" onclick="this.form.image_url.value='/static/images/shared/portrait-youth-lifestyle-event.webp'" class="text-[10px] bg-white hover:bg-cobalt hover:text-white px-2 py-0.5 rounded border border-neutral-200 transition font-mono">Event</button>
+              <button type="button" onclick="this.form.image_url.value='/static/images/portfolio/product-catalogue-umkm.jpg'" class="text-[10px] bg-white hover:bg-cobalt hover:text-white px-2 py-0.5 rounded border border-neutral-200 transition font-mono">Produk</button>
+              <button type="button" onclick="this.form.image_url.value='/static/images/portfolio/graduation-portrait.jpg'" class="text-[10px] bg-white hover:bg-cobalt hover:text-white px-2 py-0.5 rounded border border-neutral-200 transition font-mono">Wisuda</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="pt-4 border-t border-neutral-200 flex items-center justify-end gap-3">
+          <button type="button" onclick="switchTab('tab-portfolios')" class="px-5 py-3 rounded-full bg-surface border border-neutral-300 text-xs font-bold text-neutral-600 hover:text-obsidian transition">
+            Batal
+          </button>
+          <button type="submit" class="px-7 py-3.5 rounded-full bg-obsidian text-acid hover:bg-cobalt hover:text-white font-black text-xs uppercase tracking-wider transition active:scale-95 shadow-lg flex items-center gap-2">
+            <span>Terbitkan Karya ke Database</span>
+            <span>→</span>
+          </button>
+        </div>
+
+      </form>
+
+    </section>
+
+    <!-- ===================================================================
+         TAB 3: GEAR KAMERA & SKILLS (2-COLUMN SEIMBANG 50% - 50%)
+         =================================================================== -->
+    <section id="tab-skills" class="tab-content hidden bg-white rounded-[28px] p-6 sm:p-8 shadow-2xl border border-white/20 space-y-6">
+      
+      <div class="border-b border-neutral-200 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <span class="bg-cobalt/10 text-cobalt text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+            GEAR & KEAHLIAN FOTOGRAFI
+          </span>
+          <h2 class="text-xl font-black text-obsidian mt-1">Daftar Peralatan Kamera & Skills Studio</h2>
+        </div>
+        <span class="text-xs bg-acid text-obsidian font-bold px-3 py-1 rounded-full self-start sm:self-auto">
+          {{ skills|length }} Item Terdaftar
+        </span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+        
+        <!-- Form Tambah Gear Baru (5/12) -->
+        <div class="md:col-span-5 bg-surface rounded-2xl p-5 border border-neutral-200">
+          <h3 class="font-black text-sm text-obsidian mb-1">+ Tambah Gear / Skill Baru</h3>
+          <p class="text-xs text-neutral-500 mb-4">Tambahkan kamera, lensa, lighting, atau sertifikasi keahlian.</p>
+
+          <form action="{{ url_for('skill_create') }}" method="post" class="space-y-3 text-xs font-semibold">
+            <div>
+              <label class="block text-[10px] font-bold text-neutral-700 uppercase mb-1">Nama Gear / Skill *</label>
+              <input type="text" name="name" required placeholder="Contoh: Sony FX3 Cinema Line" class="w-full p-2.5 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none bg-white" />
+            </div>
+
+            <div>
+              <label class="block text-[10px] font-bold text-neutral-700 uppercase mb-1">Kategori *</label>
+              <input type="text" name="category" required placeholder="Contoh: Kamera & Cinema" class="w-full p-2.5 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none bg-white" />
+            </div>
+
+            <div>
+              <label class="block text-[10px] font-bold text-neutral-700 uppercase mb-1">Level / Spesifikasi *</label>
+              <input type="text" name="level" required placeholder="Contoh: 4K 120p RAW" class="w-full p-2.5 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none bg-white" />
+            </div>
+
+            <button type="submit" class="w-full py-3 rounded-full bg-obsidian text-acid hover:bg-cobalt hover:text-white font-black text-xs uppercase tracking-wider transition active:scale-95 shadow-md mt-2">
+              Simpan Gear Baru →
+            </button>
+          </form>
+        </div>
+
+        <!-- Daftar Kartu Gear (7/12) -->
+        <div class="md:col-span-7 space-y-2.5">
+          {% for sk in skills %}
+          <div class="p-3.5 rounded-2xl bg-surface border border-neutral-200 flex items-center justify-between gap-3 hover:border-cobalt/40 transition">
+            <div class="flex items-center gap-3 min-w-0">
+              <span class="w-9 h-9 rounded-xl bg-obsidian text-acid flex items-center justify-center text-xs font-mono font-black shrink-0 shadow-sm">
+                {{ "%02d" % loop.index }}
+              </span>
+              <div class="min-w-0">
+                <p class="font-extrabold text-xs sm:text-sm text-obsidian truncate">{{ sk.name }}</p>
+                <p class="text-[11px] text-neutral-500 truncate">{{ sk.category }} • <strong class="text-neutral-700">{{ sk.level }}</strong></p>
+              </div>
+            </div>
+
+            <form action="{{ url_for('skill_delete', skill_id=sk.id) }}" method="post" onsubmit="return confirm('Hapus gear atau keahlian ini?');">
+              <button type="submit" class="px-2.5 py-1.5 rounded-lg bg-white border border-neutral-300 text-neutral-600 hover:bg-obsidian hover:text-white hover:border-obsidian text-xs font-bold transition">
+                Hapus
+              </button>
+            </form>
+          </div>
+          {% endfor %}
+        </div>
+
+      </div>
+
+    </section>
+
+    <!-- ===================================================================
+         TAB 4: PROFIL CV & KONTAK STUDIO (BALANCED STRUCTURED FORM)
+         =================================================================== -->
+    <section id="tab-profile" class="tab-content hidden bg-white rounded-[28px] p-6 sm:p-8 shadow-2xl border border-white/20 space-y-6">
+      
+      <div class="border-b border-neutral-200 pb-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div>
+          <span class="bg-cobalt/10 text-cobalt text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+            BIODATA & KONTAK RESMI
+          </span>
+          <h2 class="text-xl font-black text-obsidian mt-1">Pengaturan Profil CV Pengelola Studio</h2>
+        </div>
+        <span class="text-[11px] font-bold text-neutral-500 bg-surface px-3 py-1 rounded-full border border-neutral-200">
+          ID: #LEAD-DIRECTOR
+        </span>
+      </div>
+
+      <form action="{{ url_for('profile_update') }}" method="post" class="space-y-4 text-xs font-semibold">
+        
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Nama Lengkap *</label>
+            <input type="text" name="full_name" value="{{ cv_profile.full_name }}" required class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Role / Jabatan *</label>
+            <input type="text" name="role_title" value="{{ cv_profile.role_title }}" required class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Bio Ringkas CV *</label>
+          <textarea name="bio" rows="3" required class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none leading-relaxed transition">{{ cv_profile.bio }}</textarea>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Pengalaman Kerja</label>
+            <input type="text" name="experience_years" value="{{ cv_profile.experience_years }}" required class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Total Proyek Selesai</label>
+            <input type="text" name="completed_projects" value="{{ cv_profile.completed_projects }}" required class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Domisili Studio</label>
+            <input type="text" name="location" value="{{ cv_profile.location }}" required class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Email Resmi</label>
+            <input type="email" name="email" value="{{ cv_profile.email }}" required class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Nomor WhatsApp</label>
+            <input type="text" name="phone" value="{{ cv_profile.phone }}" required class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+
+          <div>
+            <label class="block font-bold text-neutral-700 uppercase tracking-wider text-[10px] mb-1">Akun Instagram</label>
+            <input type="text" name="instagram" value="{{ cv_profile.instagram }}" required class="w-full p-3 rounded-xl border border-neutral-300 font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-neutral-200 flex items-center justify-end">
+          <button type="submit" class="px-7 py-3.5 rounded-full bg-cobalt text-white hover:bg-obsidian hover:text-acid font-black text-xs uppercase tracking-wider transition active:scale-95 shadow-md flex items-center gap-2">
+            <span>Perbarui Profil CV Pengelola</span>
+            <span>→</span>
+          </button>
+        </div>
+
+      </form>
+
+    </section>
+
+  </main>
+
+  <!-- DASHBOARD FOOTER -->
+  <footer class="mt-8 text-center text-white/80 text-xs px-4">
+    <div class="max-w-6xl mx-auto border-t border-white/15 pt-5 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div class="flex items-center gap-2">
+        <img src="{{ url_for('static', filename='images/logo/logo-mark-acid.png') }}" alt="LYQU Logo" class="w-4 h-4 object-contain" />
+        <span class="font-black text-white">LYQU VISUAL STUDIO</span>
+        <span>•</span>
+        <span>Yogyakarta, Indonesia</span>
+      </div>
+      <p class="font-bold text-acid">16-Bit RAW Proofing & Production Dashboard</p>
+    </div>
+  </footer>
+
+</div>
+
+<!-- SCRIPT TAB SWITCHER (INSTANT & SILKY SMOOTH) -->
+<script>
+  function switchTab(tabId) {
+    // Sembunyikan semua tab content
+    document.querySelectorAll('.tab-content').forEach(function(el) {
+      el.classList.add('hidden');
+    });
+
+    // Tampilkan tab yang dipilih
+    var activeTab = document.getElementById(tabId);
+    if (activeTab) {
+      activeTab.classList.remove('hidden');
+    }
+
+    // Reset gaya semua tab button
+    document.querySelectorAll('.tab-btn').forEach(function(btn) {
+      btn.className = 'tab-btn px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 transition whitespace-nowrap text-white/80 hover:text-white hover:bg-white/10';
+    });
+
+    // Set gaya active pada tombol tab yang dipilih
+    var activeBtn = document.getElementById('btn-' + tabId);
+    if (activeBtn) {
+      activeBtn.className = 'tab-btn px-4 py-2.5 rounded-xl font-bold text-xs flex items-center gap-2 transition whitespace-nowrap bg-acid text-obsidian shadow-sm';
+    }
+  }
+</script>
+{% endblock %}

@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Login Pengelola — LYQU VISUAL STUDIO{% endblock %}
+{% block site_navigation %}{% endblock %}
+{% block site_modals %}{% endblock %}
+{% block page_scripts %}{% endblock %}
+
+{% block content %}
+<section class="min-h-screen hero-blueprint px-4 py-12 flex flex-col justify-between items-center selection:bg-acid selection:text-obsidian">
+  
+  <!-- TOP BACK LINK -->
+  <div class="w-full max-w-md mx-auto pt-2">
+    <a href="{{ url_for('beranda') }}" class="inline-flex items-center gap-2 bg-obsidian/80 backdrop-blur-md border border-white/20 text-white px-4 py-1.5 rounded-full text-xs font-semibold hover:border-acid hover:text-acid transition shadow-lg">
+      <span class="text-acid">←</span>
+      <span>Kembali ke Halaman Publik</span>
+    </a>
+  </div>
+
+  <!-- LOGIN CARD -->
+  <div class="mx-auto max-w-md w-full rounded-[32px] border-2 border-white/20 bg-white p-6 sm:p-8 shadow-2xl my-auto">
+    
+    <!-- Brand Logo & Header -->
+    <div class="flex items-center justify-between pb-4 mb-4 border-b border-neutral-100">
+      <div class="flex items-center gap-2.5">
+        <img src="{{ url_for('static', filename='images/logo/logo-mark-dark.png') }}" alt="LYQU VISUAL" class="w-7 h-7 object-contain shrink-0" />
+        <span class="font-black text-sm tracking-tight text-obsidian">LYQU VISUAL</span>
+      </div>
+      <span class="bg-acid text-obsidian text-[10px] font-black px-2.5 py-0.5 rounded-full shadow-sm">
+        ADMIN OS
+      </span>
+    </div>
+
+    <!-- Tilted Sticker & Title -->
+    <span class="bg-cobalt text-white font-bold text-[10px] px-3 py-1 rounded-full uppercase tracking-wider inline-block -rotate-2 shadow-sm">
+      PORTAL PENGELOLA STUDIO
+    </span>
+    <h1 class="mt-2.5 text-2xl font-black text-obsidian tracking-tight">Login Dasbor</h1>
+    <p class="mt-1 text-xs text-neutral-600 leading-relaxed">
+      Masuk untuk mengelola katalog karya portofolio, keahlian gear, dan data profil CV secara dinamis (CRUD).
+    </p>
+
+    <!-- Kredensial Login Admin Default -->
+    <div class="my-4 bg-surface border border-neutral-200 rounded-2xl p-3.5 text-xs text-obsidian shadow-inner">
+      <div>
+        <span class="font-bold block text-[11px] uppercase tracking-wider text-neutral-700">Kredensial Login Admin:</span>
+        <span class="font-semibold block text-[11px] mt-0.5 text-neutral-600">Username: <code class="bg-white border border-neutral-300 px-1.5 py-0.5 rounded text-cobalt font-bold font-mono">admin</code> • Password: <code class="bg-white border border-neutral-300 px-1.5 py-0.5 rounded text-cobalt font-bold font-mono">admin123</code></span>
+      </div>
+    </div>
+
+    <!-- Form Login Admin -->
+    <form action="{{ url_for('login', ref=referrer) }}" method="post" class="space-y-3.5">
+      <div>
+        <label class="block text-[10px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Username Admin</label>
+        <input name="username" type="text" value="admin" required minlength="1" maxlength="80" autocomplete="username" class="w-full rounded-xl border border-neutral-300 p-3 text-xs font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+      </div>
+
+      <div>
+        <label class="block text-[10px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Password</label>
+        <input name="password" type="password" value="admin123" required minlength="1" maxlength="80" autocomplete="current-password" class="w-full rounded-xl border border-neutral-300 p-3 text-xs font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+      </div>
+
+      <button type="submit" class="w-full rounded-full bg-obsidian py-3.5 text-xs font-black uppercase tracking-wider text-acid transition hover:bg-cobalt hover:text-white active:scale-95 shadow-lg mt-2 flex items-center justify-center gap-2">
+        <span>Masuk ke Dasbor Pengelola</span>
+        <span>→</span>
+      </button>
+    </form>
+
+    <div class="mt-5 pt-3.5 border-t border-neutral-100 text-center">
+      <span class="text-[10px] text-neutral-400 font-medium">LYQU VISUAL STUDIO • Yogyakarta, Indonesia</span>
+    </div>
+
+  </div>
+
+  <div class="text-center text-white/70 text-xs py-2">
+    © 2026 LYQU VISUAL STUDIO
+  </div>
+
+</section>
+{% endblock %}

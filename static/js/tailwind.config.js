@@ -8,15 +8,18 @@
       theme: {
         extend: {
           fontFamily: {
-            hero: ['Unbounded', 'sans-serif'],
-            sans: ['Plus Jakarta Sans', 'sans-serif'],
-            mono: ['JetBrains Mono', 'monospace'],
+            hero: ['Montserrat', 'sans-serif'],
+            sans: ['Montserrat', 'sans-serif'],
+            mono: ['Montserrat', 'monospace'],
+            montserrat: ['Montserrat', 'sans-serif'],
           },
           colors: {
             cobalt: '#1E3BFF',
             acid: '#C6FF00',
-            obsidian: '#141519',
-            surface: '#F4F5F8'
+            obsidian: '#0E1015',
+            surface: '#F6F8FB',
+            charcoal: '#171922',
+            cardBg: '#12141C',
           }
         }
       }

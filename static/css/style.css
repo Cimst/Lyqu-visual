@@ -1,57 +1,58 @@
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
 
     /* ==========================================================
-       VIEWPORT-LOCKED SLIDE DECK (DESKTOP) & SMOOTH MOBILE FLOW
+       MODERN PROFESSIONAL STUDIO LAYOUT ARCHITECTURE
        ========================================================== */
     html, body {
       margin: 0;
       padding: 0;
       height: 100%;
-      overflow: hidden;
-      background-color: #141519;
+      background-color: #0E1015;
+      color: #141519;
+      font-family: 'Montserrat', sans-serif !important;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    button, input, select, textarea {
+      font-family: 'Montserrat', sans-serif !important;
     }
 
     #deckContainer {
       height: 100vh;
       height: 100dvh;
-      overflow-y: scroll;
-      scroll-snap-type: y mandatory;
+      overflow-y: auto;
+      scroll-snap-type: y proximity;
       scroll-behavior: smooth;
       isolation: isolate;
       -webkit-overflow-scrolling: touch;
     }
 
     .deck-slide {
-      height: 100vh;
-      height: 100dvh;
-      width: 100vw;
+      min-height: 100vh;
+      min-height: 100dvh;
+      width: 100%;
       scroll-snap-align: start;
-      scroll-snap-stop: always;
       position: relative;
       z-index: 0;
       isolation: isolate;
-      overflow: hidden;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
     }
 
-    /* Pada layar mobile & tablet (< 1024px): matikan snap paksa agar vertical scroll mulus */
+    /* Layar mobile & tablet: scroll alami dan nyaman */
     @media (max-width: 1023px) {
       #deckContainer {
         scroll-snap-type: none;
       }
       .deck-slide {
-        height: auto;
         min-height: auto;
-        width: 100%;
+        height: auto;
         scroll-snap-align: none;
-        scroll-snap-stop: normal;
-        overflow-x: hidden;
-        overflow-y: visible;
-      }
-      #slide-1.deck-slide {
-        min-height: 100dvh;
       }
     }
 
@@ -127,8 +128,9 @@
     }
     #viewfinderCursor::after {
       content: '+';
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 12px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
       color: #C6FF00;
     }
     #viewfinderCursor.cursor-hover {
@@ -140,17 +142,17 @@
 
     /* 4. Giant Stacked Hero Typography */
     .giant-stacked {
-      font-family: 'Unbounded', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-weight: 900;
-      line-height: 0.84;
-      letter-spacing: -0.045em;
+      line-height: 0.9;
+      letter-spacing: -0.035em;
       perspective: 900px;
-      opacity: 0.78;
+      opacity: 0.95;
     }
     @media (max-width: 639px) {
       .giant-stacked {
-        opacity: 0.96;
-        line-height: 0.88;
+        opacity: 0.98;
+        line-height: 0.92;
       }
     }
 
@@ -317,7 +319,7 @@
       background: #f9fafb;
       color: #4b5563;
       cursor: pointer;
-      font: 400 25px/1 'Plus Jakarta Sans', sans-serif;
+      font: 400 24px/1 'Montserrat', sans-serif;
       transition: background-color 0.18s ease, color 0.18s ease;
     }
 
@@ -335,17 +337,17 @@
       border-radius: 11px;
       background: #1e3bff;
       color: #c6ff00;
-      font-family: 'Unbounded', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 16px;
       font-weight: 900;
     }
 
     .sidebar-brand-name {
       white-space: nowrap;
-      font-family: 'Unbounded', sans-serif;
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: -0.04em;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
     }
 
     .sidebar-brand-name span {
@@ -355,10 +357,10 @@
     .sidebar-section-label {
       margin: 34px 8px 10px;
       color: #6b7280;
-      font-family: 'JetBrains Mono', monospace;
-      font-size: 9px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
       font-weight: 700;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
     }
 
     .sidebar-links {
@@ -375,7 +377,7 @@
       padding: 0 10px;
       border-radius: 12px;
       color: #4b5563;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 12px;
       font-weight: 700;
       text-decoration: none;
@@ -402,7 +404,7 @@
       border-radius: 9px;
       background: #f3f4f6;
       color: #6b7280;
-      font-family: 'JetBrains Mono', monospace;
+      font-family: 'Montserrat', sans-serif;
       font-size: 10px;
       font-weight: 700;
     }
@@ -432,45 +434,37 @@
 
     .sidebar-toggle {
       display: flex;
-      width: 38px;
-      height: 38px;
-      flex: 0 0 38px;
+      width: 30px;
+      height: 30px;
+      flex: 0 0 30px;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 4px;
-      border: 1px solid rgba(255, 255, 255, 0.4);
-      border-radius: 12px;
-      background: rgba(20, 21, 25, 0.85);
+      gap: 3px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 9999px;
+      background: rgba(255, 255, 255, 0.08);
       cursor: pointer;
-      backdrop-filter: blur(12px);
+      transition: all 0.2s ease;
+    }
+
+    .sidebar-toggle:hover {
+      background: rgba(255, 255, 255, 0.18);
+      border-color: rgba(198, 255, 0, 0.4);
     }
 
     @media (min-width: 640px) {
       .sidebar-toggle {
-        width: 42px;
-        height: 42px;
-        flex: 0 0 42px;
+        width: 32px;
+        height: 32px;
+        flex: 0 0 32px;
       }
     }
 
     .sidebar-toggle span {
-      width: 17px;
+      width: 13px;
       height: 2px;
       border-radius: 2px;
       background: #c6ff00;
-    }
-
-    @media (min-width: 1536px) {
-      .site-nav {
-        display: grid;
-        grid-template-columns: auto auto;
-        column-gap: 1rem;
-        justify-content: space-between;
-      }
-
-      .site-nav > a,
-      .site-nav-actions {
-        min-width: max-content;
-      }
+      transition: transform 0.2s ease;
     }
