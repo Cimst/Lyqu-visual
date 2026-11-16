@@ -1,27 +1,125 @@
-  <!-- MODAL GOOGLE SSO LOGIN -->
+  <!-- MODAL LOGIN (KLIEN GOOGLE SSO & ADMIN DASBOR) -->
   <div id="ssoModal" class="fixed inset-0 bg-obsidian/80 backdrop-blur-md z-[90] hidden items-end sm:items-center justify-center p-0 sm:p-4">
     <div class="bg-white rounded-t-[32px] sm:rounded-3xl max-w-md w-full p-6 sm:p-7 border border-neutral-200 text-center relative shadow-2xl">
       <div class="sm:hidden w-12 h-1.5 bg-neutral-300 rounded-full mx-auto mb-4"></div>
-      <button onclick="closeSsoModal()" class="absolute top-4 right-5 w-8 h-8 rounded-full bg-surface flex items-center justify-center text-sm font-bold text-neutral-500 hover:text-obsidian">✕</button>
-      <div class="flex justify-center mb-2.5">
-        <img src="{{ url_for('static', filename='images/logo/logo-mark-dark.png') }}" alt="LYQU VISUAL" class="w-12 h-12 object-contain drop-shadow-sm" />
-      </div>
-      <span class="bg-cobalt/10 text-cobalt text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">GOOGLE OAUTH 2.0 • 1-CLICK LOGIN</span>
-      <h3 class="font-extrabold text-lg sm:text-xl text-obsidian mt-3">Autentikasi Klien Studio</h3>
-      <p class="text-xs text-neutral-600 mt-1">Masuk instan menggunakan akun Google untuk memilih foto RAW, mengunci tanggal, dan membuka Google Drive.</p>
-
-      <div class="mt-4 sm:mt-5 space-y-3 text-left">
-        <label class="block text-xs font-bold text-neutral-700 uppercase">Nama Lengkap</label>
-        <input id="ssoName" type="text" value="Muhammad Zaki" class="w-full p-3 rounded-xl border border-neutral-300 text-xs font-semibold focus:ring-2 focus:ring-cobalt outline-none" />
-        <label class="block text-xs font-bold text-neutral-700 uppercase">Email Google</label>
-        <input id="ssoEmail" type="email" value="klien.lyqu@gmail.com" class="w-full p-3 rounded-xl border border-neutral-300 text-xs font-semibold focus:ring-2 focus:ring-cobalt outline-none" />
+      <button onclick="closeSsoModal()" class="absolute top-4 right-5 w-8 h-8 rounded-full bg-surface flex items-center justify-center text-xs font-bold text-neutral-500 hover:text-obsidian hover:bg-neutral-200 transition">✕</button>
+      
+      <div class="flex justify-center mb-3">
+        <img src="{{ url_for('static', filename='images/logo/logo-mark-dark.png') }}" alt="LYQU VISUAL" class="w-10 h-10 object-contain drop-shadow-sm" />
       </div>
 
-      <button onclick="handleSsoLogin()" class="mt-5 sm:mt-6 w-full py-3.5 rounded-full bg-obsidian text-acid font-bold text-xs uppercase tracking-wider hover:bg-cobalt hover:text-white active:scale-95 transition shadow-md">
-        Lanjutkan dengan Google →
-      </button>
+      <!-- SEGMENTED TOGGLE: KLIEN VS ADMIN -->
+      <div class="flex items-center p-1 bg-surface rounded-2xl border border-neutral-200 mb-4">
+        <button type="button" id="tabBtnClient" onclick="switchModalTab('client')" class="flex-1 py-2 rounded-xl text-xs font-bold transition bg-obsidian text-acid shadow-sm">
+          Klien Studio
+        </button>
+        <button type="button" id="tabBtnAdmin" onclick="switchModalTab('admin')" class="flex-1 py-2 rounded-xl text-xs font-bold transition text-neutral-600 hover:text-obsidian">
+          Admin Studio (Dasbor)
+        </button>
+      </div>
+
+      <!-- ==========================================
+           PANEL 1: LOGIN KLIEN (GOOGLE SSO)
+           ========================================== -->
+      <div id="modalClientPanel" class="space-y-4">
+        <div>
+          <span class="bg-cobalt/10 text-cobalt text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+            GOOGLE OAUTH 2.0 • 1-CLICK LOGIN
+          </span>
+          <h3 class="font-extrabold text-lg sm:text-xl text-obsidian mt-2">Autentikasi Klien Studio</h3>
+          <p class="text-xs text-neutral-600 mt-1">Masuk instan menggunakan akun Google untuk memilih foto RAW, mengunci tanggal, dan membuka Google Drive.</p>
+        </div>
+
+        <div class="space-y-3 text-left">
+          <div>
+            <label class="block text-[10px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Nama Lengkap</label>
+            <input id="ssoName" type="text" value="Muhammad Zaki" class="w-full p-3 rounded-xl border border-neutral-300 text-xs font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+          <div>
+            <label class="block text-[10px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Email Google</label>
+            <input id="ssoEmail" type="email" value="klien.lyqu@gmail.com" class="w-full p-3 rounded-xl border border-neutral-300 text-xs font-semibold focus:ring-2 focus:ring-cobalt outline-none transition" />
+          </div>
+        </div>
+
+        <button onclick="handleSsoLogin()" class="w-full py-3.5 rounded-full bg-obsidian text-acid font-bold text-xs uppercase tracking-wider hover:bg-cobalt hover:text-white active:scale-95 transition shadow-md">
+          Lanjutkan sebagai Klien →
+        </button>
+
+        <div class="pt-3 border-t border-neutral-100 flex items-center justify-between text-[11px]">
+          <span class="text-neutral-500 font-semibold">Pengelola studio?</span>
+          <button type="button" onclick="switchModalTab('admin')" class="font-bold text-cobalt hover:text-obsidian hover:underline">
+            Login Admin & Dasbor →
+          </button>
+        </div>
+      </div>
+
+      <!-- ==========================================
+           PANEL 2: LOGIN ADMIN (TERHUBUNG KE DASBOR)
+           ========================================== -->
+      <div id="modalAdminPanel" class="hidden space-y-4">
+        <div>
+          <span class="bg-acid text-obsidian text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+            ADMIN OS • TERHUBUNG KE DASBOR
+          </span>
+          <h3 class="font-extrabold text-lg sm:text-xl text-obsidian mt-2">Login Pengelola Studio</h3>
+          <p class="text-xs text-neutral-600 mt-1">Masuk dengan kredensial pengelola untuk mengelola katalog karya, gear kamera, dan pesanan masuk di Dasbor.</p>
+        </div>
+
+        <!-- Form Login Terhubung ke Flask Session & Dasbor -->
+        <form action="{{ url_for('login') }}" method="post" class="space-y-3 text-left">
+          <div>
+            <label class="block text-[10px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Username Admin</label>
+            <input name="username" type="text" value="admin" required autocomplete="username" class="w-full p-3 rounded-xl border border-neutral-300 text-xs font-semibold focus:ring-2 focus:ring-cobalt outline-none transition bg-white" />
+          </div>
+
+          <div>
+            <label class="block text-[10px] font-bold text-neutral-700 uppercase tracking-wider mb-1">Password</label>
+            <input name="password" type="password" value="admin123" required autocomplete="current-password" class="w-full p-3 rounded-xl border border-neutral-300 text-xs font-semibold focus:ring-2 focus:ring-cobalt outline-none transition bg-white" />
+          </div>
+
+          <div class="bg-surface rounded-xl p-2.5 border border-neutral-200 text-[10px] text-neutral-600">
+            Kredensial Default: <strong class="text-obsidian">admin</strong> / <strong class="text-obsidian">admin123</strong>
+          </div>
+
+          <button type="submit" class="w-full py-3.5 rounded-full bg-cobalt text-white font-bold text-xs uppercase tracking-wider hover:bg-obsidian hover:text-acid active:scale-95 transition shadow-lg flex items-center justify-center gap-1.5">
+            <span>Masuk ke Dasbor Pengelola</span>
+            <span>→</span>
+          </button>
+        </form>
+
+        <div class="pt-3 border-t border-neutral-100 flex items-center justify-between text-[11px]">
+          <span class="text-neutral-500 font-semibold">Bukan pengelola?</span>
+          <button type="button" onclick="switchModalTab('client')" class="font-bold text-cobalt hover:text-obsidian hover:underline">
+            ← Kembali ke Login Klien
+          </button>
+        </div>
+      </div>
+
     </div>
   </div>
+
+  <script>
+    function switchModalTab(tab) {
+      var clientPanel = document.getElementById('modalClientPanel');
+      var adminPanel = document.getElementById('modalAdminPanel');
+      var btnClient = document.getElementById('tabBtnClient');
+      var btnAdmin = document.getElementById('tabBtnAdmin');
+
+      if (!clientPanel || !adminPanel) return;
+
+      if (tab === 'admin') {
+        clientPanel.classList.add('hidden');
+        adminPanel.classList.remove('hidden');
+        btnAdmin.className = 'flex-1 py-2 rounded-xl text-xs font-bold transition bg-obsidian text-acid shadow-sm';
+        btnClient.className = 'flex-1 py-2 rounded-xl text-xs font-bold transition text-neutral-600 hover:text-obsidian';
+      } else {
+        adminPanel.classList.add('hidden');
+        clientPanel.classList.remove('hidden');
+        btnClient.className = 'flex-1 py-2 rounded-xl text-xs font-bold transition bg-obsidian text-acid shadow-sm';
+        btnAdmin.className = 'flex-1 py-2 rounded-xl text-xs font-bold transition text-neutral-600 hover:text-obsidian';
+      }
+    }
+  </script>
 
   <!-- MODAL INVOICE QRIS DP 30% -->
   <div id="invoiceModal" class="fixed inset-0 bg-obsidian/80 backdrop-blur-md z-[90] hidden items-end sm:items-center justify-center p-0 sm:p-4">
