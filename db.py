@@ -170,9 +170,9 @@ def init_db():
         cursor.execute(
             """
             INSERT INTO cv_profile (id, full_name, role_title, bio, experience_years, completed_projects, location, email, phone, instagram)
-            VALUES (1, 'Zaki Mubarok', 'Lead Photographer & Visual Director', 
-            'Fotografer & Visual Director berbasis di Yogyakarta dengan spesialisasi editorial portrait, intimate wedding, dan katalog komersial UMKM. Mengusung filosofi tone sinematik hangat, presisi warna 16-bit, dan alur kerja proofing modern.',
-            '7+ Tahun', '20+ Proyek Selesai', 'Sleman, D.I. Yogyakarta', 'studio@lyquvisual.id', '+62 851-9420-2013', '@lyqu.visual')
+            VALUES (1, 'Muhammad Zaki Mubarok (MzakiM)', 'Informatics Student | UI/UX Designer | Tech Enthusiast', 
+            'A highly motivated Informatics undergraduate specializing in UI/UX design, visual communication, and technology leadership. Passionate about bridging creative design with technical implementation. Seeking opportunities to leverage skills in UI/UX, graphic design, and IoT development to create impactful, user-centric solutions.',
+            '7+ Tahun', '20+ Proyek Selesai', 'Sidoarjo & UNU Yogyakarta', 'zakimubatok1@gmail.com', '+62 851-9420-2013', '@jecckyy.yy')
             """
         )
 

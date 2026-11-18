@@ -91,10 +91,16 @@
             </div>
             <div class="bg-obsidian text-white p-4 chamfer-card flex-1 flex flex-col justify-between">
               <div>
-                <h4 class="font-extrabold text-sm text-acid">{{ cv_profile.full_name if cv_profile and cv_profile.full_name else 'Zaki Mubarok' }}</h4>
-                <p class="text-[11px] text-white/80">{{ cv_profile.role_title if cv_profile and cv_profile.role_title else 'Lead Photographer & Visual Director' }}</p>
+                <h4 class="font-extrabold text-sm text-acid">{{ cv_profile.full_name if cv_profile and cv_profile.full_name else 'Muhammad Zaki Mubarok' }}</h4>
+                <p class="text-[11px] text-white/80">{{ cv_profile.role_title if cv_profile and cv_profile.role_title else 'Informatics Student | UI/UX Designer' }}</p>
               </div>
-              <span class="text-[10px] text-acid font-semibold mt-2 block">→ {{ cv_profile.experience_years if cv_profile and cv_profile.experience_years else '7+ Tahun' }} • {{ cv_profile.completed_projects if cv_profile and cv_profile.completed_projects else '20+ Proyek' }}</span>
+              <div class="mt-2 pt-2 border-t border-white/10 flex items-center justify-between">
+                <span class="text-[10px] text-acid font-semibold">{{ cv_profile.experience_years if cv_profile and cv_profile.experience_years else '7+ Tahun' }} • {{ cv_profile.completed_projects if cv_profile and cv_profile.completed_projects else '20+ Proyek' }}</span>
+                <a href="{{ url_for('cv_page') }}" class="text-[10px] font-bold text-white hover:text-acid flex items-center gap-1 transition">
+                  <span>Buka CV</span>
+                  <span>↗</span>
+                </a>
+              </div>
             </div>
           </div>
 

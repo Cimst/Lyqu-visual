@@ -31,6 +31,14 @@
       </a>
     </nav>
 
+    <div class="sidebar-section-label">PROFIL SUTRADARA</div>
+    <div class="px-5 py-2">
+      <a href="{{ url_for('cv_page') }}" class="w-full py-2.5 px-3.5 rounded-xl bg-acid text-obsidian text-xs font-black flex items-center justify-between shadow-md hover:bg-white transition">
+        <span>Curriculum Vitae (MzakiM)</span>
+        <span>↗</span>
+      </a>
+    </div>
+
     <div class="sidebar-section-label">PENGELOLA</div>
     <div class="px-5 py-2.5">
       <a href="{{ url_for('dashboard') }}" class="w-full py-2.5 px-3.5 rounded-xl bg-cobalt text-white text-xs font-bold flex items-center justify-between shadow-md hover:bg-obsidian hover:text-acid transition">
@@ -62,6 +70,7 @@
       <a href="#slide-4" class="px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-semibold text-white/80 hover:text-white hover:bg-white/10 transition whitespace-nowrap">Paket</a>
       <a href="#slide-5" class="px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-semibold text-white/80 hover:text-white hover:bg-white/10 transition whitespace-nowrap">Portal</a>
       <a href="#slide-6" class="px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-semibold text-white/80 hover:text-white hover:bg-white/10 transition whitespace-nowrap">FAQ</a>
+      <a href="{{ url_for('cv_page') }}" class="px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-black text-acid hover:text-obsidian hover:bg-acid transition whitespace-nowrap">CV</a>
     </div>
 
     <div class="site-nav-actions flex items-center gap-1.5 sm:gap-2 shrink-0">

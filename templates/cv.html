@@ -1,0 +1,368 @@
+{% extends 'base.html' %}
+
+{% block title %}Curriculum Vitae — Muhammad Zaki Mubarok (MzakiM){% endblock %}
+{% block site_navigation %}{% endblock %}
+{% block site_modals %}{% endblock %}
+{% block page_scripts %}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen hero-blueprint text-obsidian flex flex-col justify-between py-6 px-4 sm:px-6 md:px-8 selection:bg-acid selection:text-obsidian print:bg-white print:py-0 print:px-0">
+
+  <!-- FLOATING TOP NAVIGATION (HIDDEN ON PRINT) -->
+  <header class="max-w-5xl w-full mx-auto mb-6 print:hidden">
+    <nav class="bg-obsidian/90 backdrop-blur-xl border border-white/20 rounded-full px-4 sm:px-6 py-2 shadow-xl flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="{{ url_for('beranda') }}" class="flex items-center gap-2.5 text-xs font-bold text-white hover:text-acid transition">
+          <span class="text-acid">←</span>
+          <span>Kembali ke Studio</span>
+        </a>
+        <span class="w-1.5 h-1.5 rounded-full bg-white/30 hidden sm:inline"></span>
+        <span class="text-white/70 text-xs hidden sm:inline font-mono">CV / RESUME RESMI</span>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button onclick="window.print()" class="px-3.5 py-1.5 rounded-full bg-acid text-obsidian hover:bg-white font-black text-xs uppercase tracking-wider transition shadow-sm flex items-center gap-1.5">
+          <span>Cetak / Simpan PDF</span>
+          <span class="text-[10px]">↓</span>
+        </button>
+        <a href="{{ url_for('dashboard') }}" class="px-3 py-1.5 rounded-full bg-white/10 hover:bg-white/20 text-white border border-white/20 text-xs font-bold transition">
+          Dasbor Pengelola
+        </a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- MAIN CV CONTAINER -->
+  <main class="max-w-5xl w-full mx-auto my-auto space-y-6 print:max-w-none print:my-0 print:space-y-4">
+
+    <!-- ===================================================================
+         1. HEADER PROFILE & CONTACT BENTO CARD
+         =================================================================== -->
+    <section class="bg-white rounded-[32px] p-6 sm:p-8 md:p-10 shadow-2xl border-2 border-white/20 print:shadow-none print:border print:rounded-2xl print:p-6">
+      
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-neutral-200">
+        
+        <!-- Identitas & Avatar -->
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5">
+          <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-cobalt shadow-lg shrink-0 bg-neutral-900 relative">
+            <img src="{{ url_for('static', filename='images/photographer.jpg') }}" alt="Muhammad Zaki Mubarok" class="w-full h-full object-cover" />
+            <span class="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full bg-acid border-2 border-obsidian" title="Status: Aktif"></span>
+          </div>
+
+          <div>
+            <div class="flex items-center gap-2 flex-wrap mb-1">
+              <span class="bg-cobalt text-white font-bold text-[10px] px-3 py-0.5 rounded-full uppercase tracking-wider">
+                CURRICULUM VITAE
+              </span>
+              <span class="bg-acid text-obsidian font-black text-[10px] px-2.5 py-0.5 rounded-full">
+                NIM: 251111070
+              </span>
+            </div>
+            <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-obsidian tracking-tight">
+              Muhammad Zaki Mubarok
+              <span class="text-cobalt font-extrabold text-lg sm:text-xl font-mono block sm:inline">(MzakiM)</span>
+            </h1>
+            <p class="text-xs sm:text-sm font-bold text-neutral-600 mt-1">
+              Informatics Student | UI/UX Designer | Tech Enthusiast
+            </p>
+          </div>
+        </div>
+
+        <!-- Tombol Aksi Cepat (Print / WhatsApp) -->
+        <div class="flex flex-col sm:flex-row md:flex-col items-start sm:items-center md:items-end gap-2 shrink-0 print:hidden">
+          <a href="https://wa.me/6285194202013?text=Halo%20Zaki%20Mubarok,%20saya%20melihat%20CV%20Anda" target="_blank" class="w-full sm:w-auto px-5 py-2.5 rounded-full bg-obsidian text-acid hover:bg-cobalt hover:text-white font-bold text-xs uppercase tracking-wider transition shadow text-center">
+            Hubungi via WhatsApp →
+          </a>
+          <a href="https://instagram.com/jecckyy.yy" target="_blank" class="w-full sm:w-auto px-4 py-2 rounded-full bg-surface border border-neutral-300 text-xs font-bold text-neutral-700 hover:text-obsidian hover:bg-neutral-100 transition text-center">
+            Instagram: @jecckyy.yy ↗
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Detail Kontak & Lokasi Baris Bawah Header -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 pt-5 text-xs text-neutral-700 font-semibold">
+        <div class="bg-surface p-3 rounded-xl border border-neutral-200">
+          <span class="text-[10px] uppercase font-bold text-neutral-400 block">Institusi Pendidikan</span>
+          <span class="font-bold text-obsidian mt-0.5 block">Universitas Nahdlatul Ulama Yogyakarta</span>
+        </div>
+        <div class="bg-surface p-3 rounded-xl border border-neutral-200">
+          <span class="text-[10px] uppercase font-bold text-neutral-400 block">Alamat / Asal</span>
+          <span class="font-bold text-obsidian mt-0.5 block">Kupang Bader, Jabon, Sidoarjo (61276)</span>
+        </div>
+        <div class="bg-surface p-3 rounded-xl border border-neutral-200">
+          <span class="text-[10px] uppercase font-bold text-neutral-400 block">Email Resmi</span>
+          <a href="mailto:zakimubatok1@gmail.com" class="font-bold text-cobalt hover:underline mt-0.5 block truncate">zakimubatok1@gmail.com</a>
+        </div>
+        <div class="bg-surface p-3 rounded-xl border border-neutral-200">
+          <span class="text-[10px] uppercase font-bold text-neutral-400 block">Karya & Studio</span>
+          <a href="{{ url_for('beranda') }}" class="font-bold text-cobalt hover:underline mt-0.5 block">LYQU VISUAL Studio Jogja</a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===================================================================
+         2. CAREER OBJECTIVE CARD
+         =================================================================== -->
+    <section class="bg-white rounded-[28px] p-6 sm:p-7 shadow-xl border border-white/20 print:shadow-none print:border print:rounded-2xl">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-acid border border-obsidian"></span>
+        <h2 class="text-xs font-black uppercase tracking-wider text-obsidian">Career Objective</h2>
+      </div>
+      <p class="text-xs sm:text-sm text-neutral-700 leading-relaxed font-medium">
+        A highly motivated Informatics undergraduate specializing in UI/UX design, visual communication, and technology leadership. Passionate about bridging creative design with technical implementation. Seeking opportunities to leverage skills in UI/UX, graphic design, and IoT development to create impactful, user-centric solutions.
+      </p>
+    </section>
+
+    <!-- ===================================================================
+         3. DUA KOLOM: PENDIDIKAN & PENGALAMAN KERJA / KEPEMIMPINAN
+         =================================================================== -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+
+      <!-- KOLOM KIRI (5/12): PENDIDIKAN & WORK EXPERIENCE -->
+      <div class="md:col-span-5 space-y-6">
+
+        <!-- KARTU PENDIDIKAN -->
+        <section class="bg-white rounded-[28px] p-6 shadow-xl border border-white/20 space-y-4 print:shadow-none print:border print:rounded-2xl">
+          <div class="border-b border-neutral-200 pb-3 flex items-center justify-between">
+            <h2 class="text-xs font-black uppercase tracking-wider text-obsidian flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-cobalt"></span>
+              <span>Education</span>
+            </h2>
+            <span class="text-[10px] font-mono text-neutral-400 font-bold">2011 – Present</span>
+          </div>
+
+          <div class="space-y-4 text-xs font-medium">
+            
+            <!-- Kuliah -->
+            <div class="relative pl-4 border-l-2 border-cobalt">
+              <span class="text-[10px] font-bold text-cobalt font-mono block">2025 – Present</span>
+              <h3 class="font-black text-sm text-obsidian">Universitas Nahdlatul Ulama Yogyakarta</h3>
+              <p class="text-neutral-600 mt-0.5">Undergraduate Degree, Major: <strong>Informatika</strong></p>
+              <p class="text-[11px] font-mono font-bold text-obsidian mt-0.5">NIM: 251111070</p>
+            </div>
+
+            <!-- SMK -->
+            <div class="relative pl-4 border-l-2 border-neutral-300">
+              <span class="text-[10px] font-bold text-neutral-500 font-mono block">2022 – 2025</span>
+              <h3 class="font-bold text-xs text-obsidian">SMK WALISONGO 1 GEMPOL</h3>
+              <p class="text-neutral-600 mt-0.5">Major: <strong>Visual Communication Design (DKV)</strong></p>
+            </div>
+
+            <!-- SMP -->
+            <div class="relative pl-4 border-l-2 border-neutral-300">
+              <span class="text-[10px] font-bold text-neutral-500 font-mono block">2019 – 2022</span>
+              <h3 class="font-bold text-xs text-obsidian">SMP NEGERI 2 JABON</h3>
+            </div>
+
+            <!-- SD & TK -->
+            <div class="relative pl-4 border-l-2 border-neutral-300">
+              <span class="text-[10px] font-bold text-neutral-500 font-mono block">2012 – 2019</span>
+              <h3 class="font-bold text-xs text-obsidian">SDN KUPANG</h3>
+            </div>
+
+            <div class="relative pl-4 border-l-2 border-neutral-300">
+              <span class="text-[10px] font-bold text-neutral-500 font-mono block">2011 – 2012</span>
+              <h3 class="font-bold text-xs text-neutral-600">TKQ NURUL ISLAM</h3>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- KARTU PENGALAMAN KERJA (WORK EXPERIENCE) -->
+        <section class="bg-white rounded-[28px] p-6 shadow-xl border border-white/20 space-y-4 print:shadow-none print:border print:rounded-2xl">
+          <div class="border-b border-neutral-200 pb-3 flex items-center justify-between">
+            <h2 class="text-xs font-black uppercase tracking-wider text-obsidian flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-acid border border-obsidian"></span>
+              <span>Work Experience</span>
+            </h2>
+            <span class="text-[10px] font-mono text-neutral-400 font-bold">2024 – 2025</span>
+          </div>
+
+          <div class="space-y-4 text-xs font-medium">
+            
+            <div class="bg-surface p-3.5 rounded-2xl border border-neutral-200">
+              <span class="text-[10px] font-bold text-neutral-500 font-mono block">Dec 2024 – Jun 2025 • Sidoarjo</span>
+              <h3 class="font-black text-xs text-obsidian mt-0.5">DIRALOKA Space & Collabtive</h3>
+              <p class="text-[11px] font-bold text-cobalt">Barista (Full-time)</p>
+              <p class="text-[11px] text-neutral-600 mt-1 leading-relaxed">
+                Prepared and served beverages, maintained bar organization, and supported community and creative events.
+              </p>
+            </div>
+
+            <div class="bg-surface p-3.5 rounded-2xl border border-neutral-200">
+              <span class="text-[10px] font-bold text-neutral-500 font-mono block">Jul 2024 – Dec 2024 • Sidoarjo</span>
+              <h3 class="font-black text-xs text-obsidian mt-0.5">EFNB Creative Space</h3>
+              <p class="text-[11px] font-bold text-cobalt">Multimedia Designer & Editor (Internship)</p>
+              <p class="text-[11px] text-neutral-600 mt-1 leading-relaxed">
+                Designed visual materials (posters, social media content) and edited promotional videos.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+
+      <!-- KOLOM KANAN (7/12): LEADERSHIP & TECH EXPERIENCE -->
+      <div class="md:col-span-7 space-y-6">
+
+        <section class="bg-white rounded-[28px] p-6 sm:p-7 shadow-xl border border-white/20 space-y-4 print:shadow-none print:border print:rounded-2xl">
+          <div class="border-b border-neutral-200 pb-3 flex items-center justify-between">
+            <h2 class="text-xs font-black uppercase tracking-wider text-obsidian flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-cobalt"></span>
+              <span>Leadership & Tech Experience</span>
+            </h2>
+            <span class="text-[10px] font-mono text-neutral-400 font-bold">2026 – Present</span>
+          </div>
+
+          <div class="space-y-4 text-xs">
+            
+            <!-- Google Student Ambassador -->
+            <div class="bg-surface p-4 rounded-2xl border border-neutral-200 space-y-1.5 hover:border-cobalt transition">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <h3 class="font-black text-sm text-obsidian">Google Student Ambassador Program</h3>
+                <span class="bg-cobalt text-white text-[9px] font-bold px-2.5 py-0.5 rounded-full font-mono">Nov 2026 – Present</span>
+              </div>
+              <p class="text-[11px] font-bold text-cobalt">Candidate Applicant & Team Leader (DUOverse)</p>
+              <p class="text-neutral-700 text-[11px] leading-relaxed">
+                Leading team DUOverse in the GSA Buddy program representing Universitas Nahdlatul Ulama Yogyakarta. Hosted the sharing session <em>"Beyond the Prompt: Membedah Gemini AI sebagai Survival Kit Anak Perkuliahan."</em>
+              </p>
+            </div>
+
+            <!-- HIMATIKA UNU Yogyakarta -->
+            <div class="bg-surface p-4 rounded-2xl border border-neutral-200 space-y-1.5 hover:border-cobalt transition">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <h3 class="font-black text-sm text-obsidian">HIMATIKA UNU Yogyakarta</h3>
+                <span class="bg-neutral-800 text-white text-[9px] font-bold px-2.5 py-0.5 rounded-full font-mono">Aug 2026 – Present</span>
+              </div>
+              <p class="text-[11px] font-bold text-cobalt">Media Coordinator (Koordinator Tim Media)</p>
+              <p class="text-neutral-700 text-[11px] leading-relaxed">
+                Managing visual communication and media presence for the Informatics student organization for the 2026/2027 term.
+              </p>
+            </div>
+
+            <!-- Samsung Innovation Campus -->
+            <div class="bg-surface p-4 rounded-2xl border border-neutral-200 space-y-1.5 hover:border-cobalt transition">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <h3 class="font-black text-sm text-obsidian">Samsung Innovation Campus (SIC) Batch 8</h3>
+                <span class="bg-neutral-200 text-neutral-800 text-[9px] font-bold px-2.5 py-0.5 rounded-full font-mono">Jul 2026 – Sep 2026</span>
+              </div>
+              <p class="text-[11px] font-bold text-cobalt">Team Leader</p>
+              <p class="text-neutral-700 text-[11px] leading-relaxed">
+                Led a team through comprehensive training phases encompassing Python programming, Artificial Intelligence, and Internet of Things (IoT).
+              </p>
+            </div>
+
+            <!-- GENIUS 2026 -->
+            <div class="bg-surface p-4 rounded-2xl border border-neutral-200 space-y-1.5 hover:border-cobalt transition">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <h3 class="font-black text-sm text-obsidian">GENIUS 2026 (New Student Orientation)</h3>
+                <span class="bg-neutral-200 text-neutral-800 text-[9px] font-bold px-2.5 py-0.5 rounded-full font-mono">Jul 2026 – Sep 2026</span>
+              </div>
+              <p class="text-[11px] font-bold text-cobalt">Media Coordinator</p>
+              <p class="text-neutral-700 text-[11px] leading-relaxed">
+                Directed the media team for the campus orientation event at Universitas Nahdlatul Ulama Yogyakarta, managing all design and documentation efforts.
+              </p>
+            </div>
+
+            <!-- Samsung Solve for Tomorrow -->
+            <div class="bg-surface p-4 rounded-2xl border border-neutral-200 space-y-1.5 hover:border-cobalt transition">
+              <div class="flex items-center justify-between gap-2 flex-wrap">
+                <h3 class="font-black text-sm text-obsidian">Samsung Solve for Tomorrow 2026</h3>
+                <span class="bg-neutral-200 text-neutral-800 text-[9px] font-bold px-2.5 py-0.5 rounded-full font-mono">May 2026 – Sep 2026</span>
+              </div>
+              <p class="text-[11px] font-bold text-cobalt">Team Leader</p>
+              <p class="text-neutral-700 text-[11px] leading-relaxed">
+                Spearheaded project PAS-GO (Prioritas Ambulans Smart – Greenlight Optimization), a smart ambulance traffic-priority concept combining IoT and programming.
+              </p>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+
+    </div>
+
+    <!-- ===================================================================
+         4. SKILLS & KEAHLIAN MATRIX (FULL-WIDTH BENTO CARD)
+         =================================================================== -->
+    <section class="bg-white rounded-[28px] p-6 sm:p-8 shadow-xl border border-white/20 print:shadow-none print:border print:rounded-2xl">
+      <div class="border-b border-neutral-200 pb-3 mb-5 flex items-center justify-between">
+        <h2 class="text-xs font-black uppercase tracking-wider text-obsidian flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-acid border border-obsidian"></span>
+          <span>Skills & Competencies</span>
+        </h2>
+        <span class="text-[10px] font-mono text-neutral-400 font-bold">Design, Tech & Soft Skills</span>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+        
+        <!-- Skill 1: Design & Multimedia -->
+        <div class="bg-surface p-4 rounded-2xl border border-neutral-200 space-y-2.5">
+          <span class="bg-cobalt/10 text-cobalt text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider block w-fit">
+            Design & Multimedia
+          </span>
+          <div class="flex flex-wrap gap-1.5 text-[11px] font-semibold text-neutral-800">
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">UI/UX Design</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">Graphic Design</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">2D/3D Motion</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">Adobe Photoshop</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">Adobe Lightroom</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">Premiere Pro</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">After Effects</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">CorelDRAW</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">Blender</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">Canva</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">CapCut</span>
+          </div>
+        </div>
+
+        <!-- Skill 2: Programming & Technology -->
+        <div class="bg-surface p-4 rounded-2xl border border-neutral-200 space-y-2.5">
+          <span class="bg-acid text-obsidian text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider block w-fit">
+            Programming & Tech
+          </span>
+          <div class="flex flex-wrap gap-1.5 text-[11px] font-semibold text-neutral-800">
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200 font-mono">Python</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200 font-mono">MySQL / SQLite</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">IoT (Arduino, ESP32)</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200 font-mono">Git & GitHub</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">HTML5 & Tailwind</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">Visual Studio Code</span>
+          </div>
+        </div>
+
+        <!-- Skill 3: Soft Skills -->
+        <div class="bg-surface p-4 rounded-2xl border border-neutral-200 space-y-2.5">
+          <span class="bg-obsidian text-white text-[10px] font-bold px-2.5 py-0.5 rounded-full uppercase tracking-wider block w-fit">
+            Soft Skills
+          </span>
+          <div class="flex flex-wrap gap-1.5 text-[11px] font-semibold text-neutral-800">
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">Leadership</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">Teamwork</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">Communication</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">Time Management</span>
+            <span class="bg-white px-2.5 py-1 rounded-lg border border-neutral-200">Creative Problem Solving</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER NAV -->
+    <footer class="pt-2 pb-6 text-center text-xs text-white/80 print:hidden flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p>© 2026 Muhammad Zaki Mubarok (MzakiM) — Informatika UNU Yogyakarta</p>
+      <div class="flex items-center gap-3">
+        <a href="{{ url_for('beranda') }}" class="text-white hover:text-acid font-bold transition">← Beranda Studio</a>
+        <span>•</span>
+        <a href="{{ url_for('portofolio') }}" class="text-white hover:text-acid font-bold transition">Showcase Portofolio →</a>
+      </div>
+    </footer>
+
+  </main>
+
+</div>
+{% endblock %}

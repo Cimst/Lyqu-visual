@@ -142,6 +142,16 @@ def faq_kontak():
     return render_template("faq-kontak.html", active_slide=5)
 
 
+@app.route("/resume")
+@app.route("/curriculum-vitae")
+@app.route("/cv.html")
+@app.route("/cv")
+def cv_page():
+    cv_profile = db.get_cv_profile()
+    skills = db.get_all_skills()
+    return render_template("cv.html", cv_profile=cv_profile, skills=skills, active_slide=2)
+
+
 @app.get("/halaman/<slug>")
 def dynamic_page(slug):
     page = PAGE_ROUTES.get(slug)
