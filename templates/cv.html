@@ -43,24 +43,27 @@
       <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 pb-6 border-b border-neutral-200">
         
         <!-- Identitas & Avatar -->
-        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-5">
-          <div class="w-20 h-20 sm:w-24 sm:h-24 rounded-2xl overflow-hidden border-2 border-cobalt shadow-lg shrink-0 bg-neutral-900 relative">
-            <img src="{{ url_for('static', filename='images/photographer.jpg') }}" alt="Muhammad Zaki Mubarok" class="w-full h-full object-cover" />
-            <span class="absolute bottom-1 right-1 w-3.5 h-3.5 rounded-full bg-acid border-2 border-obsidian" title="Status: Aktif"></span>
+        <div class="flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6">
+          <div class="w-24 h-32 sm:w-28 sm:h-36 md:w-32 md:h-40 rounded-2xl overflow-hidden border-2 border-cobalt shadow-xl shrink-0 bg-neutral-100 relative group">
+            <img src="{{ url_for('static', filename='images/zaki-cv.jpg') }}" alt="Muhammad Zaki Mubarok" class="w-full h-full object-cover object-top transition duration-500 group-hover:scale-105" />
+            <span class="absolute bottom-1.5 right-1.5 w-3.5 h-3.5 rounded-full bg-acid border-2 border-obsidian" title="Status: Aktif"></span>
           </div>
 
           <div>
-            <div class="flex items-center gap-2 flex-wrap mb-1">
+            <div class="flex items-center gap-2 flex-wrap mb-1.5">
               <span class="bg-cobalt text-white font-bold text-[10px] px-3 py-0.5 rounded-full uppercase tracking-wider">
                 CURRICULUM VITAE
               </span>
-              <span class="bg-acid text-obsidian font-black text-[10px] px-2.5 py-0.5 rounded-full">
+              <span class="bg-acid text-obsidian font-black text-[10px] px-2.5 py-0.5 rounded-full shadow-sm">
                 NIM: 251111070
+              </span>
+              <span class="bg-surface text-neutral-700 font-bold text-[10px] px-2.5 py-0.5 rounded-full border border-neutral-200">
+                UNU YOGYAKARTA
               </span>
             </div>
             <h1 class="text-2xl sm:text-3xl md:text-4xl font-black text-obsidian tracking-tight">
               Muhammad Zaki Mubarok
-              <span class="text-cobalt font-extrabold text-lg sm:text-xl font-mono block sm:inline">(MzakiM)</span>
+              <span class="text-cobalt font-extrabold text-base sm:text-xl font-mono block sm:inline">(MzakiM)</span>
             </h1>
             <p class="text-xs sm:text-sm font-bold text-neutral-600 mt-1">
               Informatics Student | UI/UX Designer | Tech Enthusiast

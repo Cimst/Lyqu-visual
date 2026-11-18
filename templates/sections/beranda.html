@@ -67,7 +67,7 @@
                  onclick="triggerShutterLut(1)"
                  class="frosted-glass float-slow-2 cursor-pointer w-full sm:w-44 md:w-48 p-3 sm:p-3.5 rounded-[22px] sm:rounded-[26px] sm:absolute z-30 sm:bottom-[10%] md:bottom-[12%] sm:left-[3%] md:left-[6%] lg:left-[10%] flex flex-col items-center text-center group shadow-2xl">
               <div class="w-16 h-16 sm:w-18 md:w-20 sm:h-18 md:h-20 rounded-full overflow-hidden border-[2.5px] border-acid shadow-lg mb-1.5 relative">
-                <img id="heroCardImg1" src="{{ url_for('static', filename='images/photographer.jpg') }}" alt="Foto Profil {{ cv_profile.full_name if cv_profile and cv_profile.full_name else 'Zaki Mubarok' }}" class="w-full h-full object-cover transition duration-500" />
+                <img id="heroCardImg1" src="{{ url_for('static', filename='images/photographer.jpg') }}" alt="Foto Profil {{ cv_profile.full_name if cv_profile and cv_profile.full_name else 'Zaki Mubarok' }}" class="w-full h-full object-cover object-top transition duration-500" />
                 <span class="absolute bottom-0.5 right-0.5 bg-acid text-obsidian text-[8px] font-black px-1.5 py-0.5 rounded-full shadow">DIRECTOR</span>
               </div>
               <p class="font-bold text-white text-xs sm:text-sm tracking-tight drop-shadow truncate max-w-full">{{ cv_profile.full_name if cv_profile and cv_profile.full_name else 'Zaki Mubarok' }}</p>
@@ -133,7 +133,7 @@
               </div>
               <div class="flex items-center gap-2.5 pt-1">
                 <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-acid shrink-0 shadow">
-                  <img src="{{ url_for('static', filename='images/photographer.jpg') }}" alt="{{ cv_profile.full_name if cv_profile and cv_profile.full_name else 'Zaki Mubarok' }}" class="w-full h-full object-cover" />
+                  <img src="{{ url_for('static', filename='images/photographer.jpg') }}" alt="{{ cv_profile.full_name if cv_profile and cv_profile.full_name else 'Zaki Mubarok' }}" class="w-full h-full object-cover object-top" />
                 </div>
                 <div class="min-w-0">
                   <h3 class="font-black text-xs sm:text-sm text-white truncate leading-tight">{{ cv_profile.full_name if cv_profile and cv_profile.full_name else 'Zaki Mubarok' }}</h3>
